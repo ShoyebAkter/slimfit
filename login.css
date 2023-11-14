@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.background {
+    background-color: #DFF4E8;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginSection {
+    background-color: #A5EBA3;
+    width: 373px;
+    height: 547px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 5px;
+    position: relative;
+}
+
+.inputSection input {
+    margin-left: 5px;
+    height: 26px;
+    background-color: #FDFCFC;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.logoSection {
+    position: relative;
+}
+
+.rectangle {
+    width: 216px;
+    height: 140px;
+    position: absolute;
+    top: -150px;
+    left: -95px;
+}
+
+.fastfood {
+    width: 99px;
+    height: 64px;
+    position: absolute;
+    top: -130px;
+    left: -40px;
+    z-index: 1;
+}
+
+.slimfit {
+    width: 145px;
+    height: 20px;
+    position: absolute;
+    top: -60px;
+    left: -55px;
+    z-index: 1;
+}
+
+.infoSection {}
+
+.signupSection {
+    color: #000000;
+    font-weight: 400;
+    font-size: 15px;
+}
+.signupSection a{
+    color: #2909ED;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    margin-block: 30px;
+}
+
+.loginButton {
+    width: 105px;
+     height: 31px;
+     border-radius: 8px;
+     background-color:  #131212;
+     border: none;
+     color: #DFF4E8;
+}
