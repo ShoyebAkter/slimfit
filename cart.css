@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+hr{
+    border: 1px solid black; /* Set the border color to black */
+      margin: 20px 0;
+}
+.cart{
+    background-color: #E1FBE6;
+    display: flex;
+    justify-content: center;
+}
+.insideCart{
+    background-color: #EAE6E6;
+    height: 640px;
+    width: 535px;
+    padding: 50px 10px;
+}
+.totalOrder{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.orderDetails{
+    display: flex;
+    justify-content: space-around;
+}
+.orderDetails img{
+    height: 158px;
+    width: 158px;
+}
+.itemDetails{
+    padding-block: 40px;
+    width: 178px;
+}
+.itemDetails p{
+    padding-block: 10px;
+}
+.editButton{
+    display: flex;
+    color: #EC2727;
+    cursor: pointer;
+}
+.editButton div{
+    padding-right: 10px;
+}
+.plusminusSection{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    width: 87px;
+    background-color: #FFFFFF;
+    margin-block: 10px;
+}
+.plusminusSection button{
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.Subtotal{
+    padding-bottom: 20px;
+}
+.priceSection{
+    padding-bottom: 30px;
+}
+.payButton{
+    display: flex;
+    justify-content: center;
+}
+.payButton button{
+    height: 58px;
+    width: 244px;
+    background-color: #755656;
+    border-radius: 18px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}

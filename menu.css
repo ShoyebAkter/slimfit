@@ -29,6 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 300px;
 }
 .singleItem div,img{
     margin-bottom: 10px;

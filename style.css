@@ -24,11 +24,28 @@
   
   .navbar {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    background-color: #212529;
+    align-items: center;
+    background-color: #131313;
     color: white;
-    padding: 25px 60px;
-    margin-bottom: 30px;
+    padding: 20px 30px;
+  }
+  .firstSection{
+    display: flex;
+    align-items: center;
+  }
+  .firstSection a{
+    padding-right: 50px;
+  }
+  .lastSection a{
+    padding-inline: 20px;
+  }
+  .lastSection{
+    display: flex;
+    align-items: center;
+  }
+  .cart img{
+    height: 48px;
+    width: 65px;
   }
   
