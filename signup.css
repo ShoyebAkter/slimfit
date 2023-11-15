@@ -15,7 +15,7 @@ body {
 }
 .signupSec {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #DEF2E5;
     height: 100vh;
