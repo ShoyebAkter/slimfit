@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.main {
+    background-color: #E0F1E4;
+
+}
+
+.contactUs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.customerSection h2 {
+    padding-bottom: 50px;
+}
+
+.customerSection div {
+    padding-bottom: 10px;
+}
+
+.inquirySection div {
+    padding-bottom: 10px;
+}
+.inquirySection h2,h3 {
+    padding-bottom: 30px;
+}
+.inquirySection textarea {
+    width: 309px;
+    height: 133px;
+    background-color: #ffff;
+    border: none;
+}
+
+.inquirySection input {
+    width: 303px;
+     height: 39px;
+     background-color: #FDFCFC;
+     border: none;
+}
+.button button{
+    height: 37px;
+    width: 114px;
+    background-color: #ED8484;
+    border: none;
+}
