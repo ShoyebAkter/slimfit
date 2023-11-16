@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css"/>
+    <link rel="stylesheet" href="signup.css" />
     <title>Document</title>
 </head>
+
 <body>
     <div class="signupSec">
         <div>
-            <h1 >Sign Up</h1>
+            <h1>Sign Up</h1>
             <div class="loginSec">Already have an Account?<a href="Login.html">Login here</a></div>
             <div class="signupInputsection">
                 <div>Name</div>
-                <input type="text"/>
+                <input type="text" />
             </div>
             <div class="signupInputsection">
                 <div>Email Id</div>
-                <input type="text"/>
+                <input id="email" type="text" />
             </div>
             <div class="signupInputsection">
                 <div>Password</div>
-                <input type="text"/>
+                <input id="password" type="text" />
             </div>
             <div class="signupButton">
-                <button>Create an account</button>
+                <button id="createAccountBtn">Create an account</button>
             </div>
         </div>
         <div>
             <h1>Logo</h1>
         </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAc8Y2Yi9p82z08BImo_-F0ma8bb5VOAZk",
+            authDomain: "slimfit-a6d4c.firebaseapp.com",
+            projectId: "slimfit-a6d4c",
+            storageBucket: "slimfit-a6d4c.appspot.com",
+            messagingSenderId: "1041359413162",
+            appId: "1:1041359413162:web:579106b9393222cf8d15d3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        function signUp() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            console.log(email, password);
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(function (userCredential) {
+                    var user = userCredential.user;
+                    console.log("User created:", user);
+                })
+                .catch(function (error) {
+                    console.error("Error creating user:", error);
+                });
+        }
+        document.getElementById("createAccountBtn").addEventListener("click", function () {
+            signUp();
+        });
+    </script>
 </body>
+
 </html>
