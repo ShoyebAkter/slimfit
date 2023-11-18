@@ -18,8 +18,8 @@ hr{
 }
 .insideCart{
     background-color: #EAE6E6;
-    height: 640px;
-    width: 535px;
+    height: 100%;
+    width: 435px;
     padding: 50px 10px;
 }
 .totalOrder{
@@ -27,7 +27,7 @@ hr{
     justify-content: space-between;
     padding-bottom: 20px;
 }
-.orderDetails{
+.cart-item{
     display: flex;
     justify-content: space-around;
 }

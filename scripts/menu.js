@@ -6,9 +6,9 @@ const itemsArray = [
 ];
 
 const itemContainer = document.getElementById('itemContainer');
-const cartDiv = document.getElementById('orderDetails');
-const initApp = () => {
 
+const initApp = () => {
+    const quantity = 0;
     const itemsHTML = itemsArray.map((item, key) => `
 <div class="singleItem">
   <img src="${item.image}" alt="" />
@@ -16,9 +16,9 @@ const initApp = () => {
                     <div>${item.price}</div>
                     <div class="cartSection">
                     <div class="addSection">
-                        <button>-</button>
-                        <div>0</div>
-                        <button>+</button>
+                        <button onclick="updateQuantity(${key}, -1)">-</button>
+                        <div id="quantity_${key}">${quantity}</div>
+                        <button onclick="updateQuantity(${key}, 1)">+</button>
                     </div>
                     <button onClick="addtoCart(${key})">Add to cart</button>
                 </div>
@@ -29,6 +29,19 @@ const initApp = () => {
 
 }
 initApp();
+function updateQuantity(key, change) {
+    const quantityElement = document.getElementById(`quantity_${key}`);
+    
+    // Ensure the quantityElement is found
+    if (quantityElement) {
+        let quantity = parseInt(quantityElement.innerText) + change;
+
+        // Ensure quantity is not negative
+        quantity = Math.max(quantity, 0);
+
+        quantityElement.innerText = quantity;
+    }
+}
 const listCards = [];
 const addtoCart = (key) => {
 
@@ -36,34 +49,66 @@ const addtoCart = (key) => {
         listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
         listCards[key].quantity = 1
     }
-    console.log(listCards[key], listCards);
-    // reloadCard();
+    reloadCard();
 }
 const reloadCard = () => {
-    cartDiv.innerHTML = '';
+    console.log(listCards);
     let count = 0;
     let totalPrice = 0;
-
-    itemContainer.innerHTML = itemsHTML;
+    let cartDiv = document.getElementById('orderDetails');
+    cartDiv.innerHTML = ''; // Clear previous content
+    
     listCards.forEach((value, key) => {
-        totalPrice = totalPrice + value.price;
-        count = count + value + count;
-
         if (value !== null) {
-            cartDiv.innerHTML = `
-            <div><img src="${value.image}" alt=""/></div>
+            totalPrice += value.price;
+            count++;
+            let quantity=0;
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('cart-item');
+
+            itemDiv.innerHTML = `
+                <div><img src="${value.image}" alt=""/></div>
                 <div class="itemDetails">
                     <p>${value.name}</p>
-                    <div class="editButton"><div>Edit</div><div>Remove</div></div>
+                    <div class="editButton">
+                        <div>Edit</div>
+                        <div>Remove</div>
+                    </div>
                     <div class="plusminusSection">
-                        <button>-</button>
-                        <div>0</div>
-                        <button>+</button>
+                    <button onclick="updateCartQuantity(${key}, -1)">-</button>
+                        <div id="cartQuantity_${key}">${quantity}</div>
+                        <button onclick="updateCartQuantity(${key}, 1)">+</button>
+                        
                     </div>
                 </div>
                 <div>${value.price}</div>
-            `
+            `;
+
+            cartDiv.appendChild(itemDiv);
         }
-    })
+    });
+
+    // Optionally, you can display the total price and count
+    // const totalDiv = document.getElementById('totalDetails');
+    // totalDiv.innerHTML = `Total Items: ${count}, Total Price: ${totalPrice}`;
 }
-reloadCard()
+function openCart() {
+    document.getElementById('cartSidebar').style.width = '500px';
+}
+
+function closeCart() {
+    document.getElementById('cartSidebar').style.width = '0';
+}
+function updateCartQuantity(key, change) {
+    const quantityElement = document.getElementById(`cartQuantity_${key}`);
+    console.log(key,change);
+    // Ensure the quantityElement is found
+    if (quantityElement) {
+        let quantity = parseInt(quantityElement.innerText) + change;
+
+        // Ensure quantity is not negative
+        quantity = Math.max(quantity, 0);
+
+        quantityElement.innerText = quantity;
+    }
+}
