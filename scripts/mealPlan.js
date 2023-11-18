@@ -1,36 +1,36 @@
-const itemsArray = [
-    { id: 1, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "8.00" },
-    { id: 2, image: "./images/Modern-Tuna-Casserole_EXPS_THFM19_228112_B09_27_9b 1.png", name: 'Modern-Tuna-Casserole', price: "9.00" },
-    { id: 3, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "7.00" },
+const mealItemsArray = [
+    { id: 1, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus(3 times a week)', price: "20.00" },
+    { id: 2, image: "./images/Modern-Tuna-Casserole_EXPS_THFM19_228112_B09_27_9b 1.png", name: 'Modern-Tuna-Casserole(2 times a week)', price: "15.00" },
+    { id: 3, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus(3 times a week)', price: "18.00" },
     // ... more items
 ];
 
-const itemContainer = document.getElementById('itemContainer');
+const itemContainer = document.getElementById('mealSection');
 
 const initApp = () => {
     const quantity = 0;
-    const itemsHTML = itemsArray.map((item, key) => `
-<div class="singleItem">
-  <img src="${item.image}" alt="" />
-                    <div>${item.name}</div>
-                    <div>RM ${item.price}</div>
-                    <div class="cartSection">
-                    <div class="addSection">
-                        <button onclick="updateQuantity(${key}, -1)">-</button>
-                        <div id="quantity_${key}">${quantity}</div>
-                        <button onclick="updateQuantity(${key}, 1)">+</button>
-                    </div>
-                    <button onClick="addtoCart(${key})">Add to cart</button>
-                </div>
-                    </div>
+    const itemsHTML = mealItemsArray.map((item, key) => `
+    <div class="singleItem">
+    <img src="${item.image}" alt="" />
+    <div>${item.name}</div>
+    <div>RM ${item.price}</div>
+    <div class="cartSection">
+        <div class="addSection">
+        <button onclick="updateMealQuantity(${key}, -1)">-</button>
+        <div id="mealquantity_${key}">${quantity}</div>
+        <button onclick="updateMealQuantity(${key}, 1)">+</button>
+        </div>
+        <button onClick="mealAddtoCart(${key})">Add to cart</button>
+    </div>
+</div>
 `).join('');
 
     itemContainer.innerHTML = itemsHTML;
 
 }
 initApp();
-function updateQuantity(key, change) {
-    const quantityElement = document.getElementById(`quantity_${key}`);
+function updateMealQuantity(key, change) {
+    const quantityElement = document.getElementById(`mealquantity_${key}`);
     
     // Ensure the quantityElement is found
     if (quantityElement) {
@@ -43,11 +43,11 @@ function updateQuantity(key, change) {
     }
 }
 const listCards = [];
-const addtoCart = (key) => {
+const mealAddtoCart = (key) => {
 
     if (listCards[key] === undefined) {
-        listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
-        listCards[key].quantity = 1
+        listCards[key] = JSON.parse(JSON.stringify(mealItemsArray[key]));
+        listCards[key].quantity = 1;
     }
     reloadCard();
 }
@@ -60,12 +60,12 @@ const reloadCard = () => {
     
     listCards.forEach((value, key) => {
         if (value !== null) {
-            totalPrice +=parseInt(value.price);
+            totalPrice += parseInt(value.price);
             count++;
             let quantity=0;
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('cart-item');
-
+            console.log(totalPrice);
             itemDiv.innerHTML = `
                 <div><img src="${value.image}" alt=""/></div>
                 <div class="itemDetails">
@@ -88,6 +88,7 @@ const reloadCard = () => {
         }
     });
 
+    // Optionally, you can display the total price and count
     const totalDiv = document.getElementById('mealPrice');
     totalDiv.innerHTML = ` ${totalPrice}`;
 }
