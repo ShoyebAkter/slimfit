@@ -31,7 +31,7 @@ const initApp = () => {
 initApp();
 function updateQuantity(key, change) {
     const quantityElement = document.getElementById(`quantity_${key}`);
-    
+
     // Ensure the quantityElement is found
     if (quantityElement) {
         let quantity = parseInt(quantityElement.innerText) + change;
@@ -40,14 +40,17 @@ function updateQuantity(key, change) {
         quantity = Math.max(quantity, 0);
 
         quantityElement.innerText = quantity;
+        // console.log(quantity);
     }
+
 }
 const listCards = [];
 const addtoCart = (key) => {
-
+    const quantityElement = document.getElementById(`quantity_${key}`);
+    const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
     if (listCards[key] === undefined) {
         listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
-        listCards[key].quantity = 1
+        listCards[key].quantity = latestQuantity;
     }
     reloadCard();
 }
@@ -57,27 +60,26 @@ const reloadCard = () => {
     let totalPrice = 0;
     let cartDiv = document.getElementById('orderDetails');
     cartDiv.innerHTML = ''; // Clear previous content
-    
+
     listCards.forEach((value, key) => {
         if (value !== null) {
-            totalPrice +=parseInt(value.price);
+            totalPrice += parseInt(value.price)*value.quantity;
             count++;
-            let quantity=0;
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('cart-item');
-
+            console.log(value.quantity);
             itemDiv.innerHTML = `
                 <div><img src="${value.image}" alt=""/></div>
                 <div class="itemDetails">
                     <p>${value.name}</p>
                     <div class="editButton">
                         <div>Edit</div>
-                        <div>Remove</div>
+                        <div onclick="removeFromCart(${key})">Remove</div>
                     </div>
                     <div class="plusminusSection">
-                    <button onclick="updateCartQuantity(${key}, -1)">-</button>
-                        <div id="cartQuantity_${key}">${quantity}</div>
-                        <button onclick="updateCartQuantity(${key}, 1)">+</button>
+                    <button disabled onclick="updateCartQuantity(${key}, -1,${value.price})">-</button>
+                        <div id="cartQuantity_${key}">${value.quantity}</div>
+                        <button disabled onclick="updateCartQuantity(${key}, 1,${value.price})">+</button>
                         
                     </div>
                 </div>
@@ -90,6 +92,9 @@ const reloadCard = () => {
 
     const totalDiv = document.getElementById('mealPrice');
     totalDiv.innerHTML = ` ${totalPrice}`;
+    const orderDiv = document.getElementById('orderDiv');
+    orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
+    const quantityDiv = document.getElementById(``)
 }
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
@@ -98,9 +103,10 @@ function openCart() {
 function closeCart() {
     document.getElementById('cartSidebar').style.width = '0';
 }
-function updateCartQuantity(key, change) {
+function updateCartQuantity(key, change, price) {
     const quantityElement = document.getElementById(`cartQuantity_${key}`);
-    console.log(key,change);
+    let totalPrice=0;
+    // console.log(key,change);
     // Ensure the quantityElement is found
     if (quantityElement) {
         let quantity = parseInt(quantityElement.innerText) + change;
@@ -109,5 +115,14 @@ function updateCartQuantity(key, change) {
         quantity = Math.max(quantity, 0);
 
         quantityElement.innerText = quantity;
+        
+    }
+
+}
+
+function removeFromCart(key) {
+    if (listCards[key] !== undefined) {
+        delete listCards[key];
+        reloadCard();
     }
 }

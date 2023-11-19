@@ -30,11 +30,7 @@
             <h2>Login</h2>
           </a>
       
-          <a href="cart.html">
-            <div class="cart">
-              <img src="./images/cart.png" alt="cart" />
-            </div>
-          </a>
+          <!-- <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a> -->
         </div>
     
       </div>
@@ -90,7 +86,7 @@
         function login() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            console.log(email, password);
+            console.log(auth.currentUser,email, password);
 
             signInWithEmailAndPassword(auth, email, password)
                 .then(function (userCredential) {
