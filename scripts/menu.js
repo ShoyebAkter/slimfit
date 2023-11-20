@@ -94,7 +94,6 @@ const reloadCard = () => {
     totalDiv.innerHTML = ` ${totalPrice}`;
     const orderDiv = document.getElementById('orderDiv');
     orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
-    const quantityDiv = document.getElementById(``)
 }
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';

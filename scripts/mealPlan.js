@@ -45,9 +45,11 @@ function updateMealQuantity(key, change) {
 const listCards = [];
 const mealAddtoCart = (key) => {
 
+    const quantityElement = document.getElementById(`mealquantity_${key}`);
+    const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
     if (listCards[key] === undefined) {
         listCards[key] = JSON.parse(JSON.stringify(mealItemsArray[key]));
-        listCards[key].quantity = 1;
+        listCards[key].quantity = latestQuantity;
     }
     reloadCard();
 }
@@ -60,7 +62,7 @@ const reloadCard = () => {
     
     listCards.forEach((value, key) => {
         if (value !== null) {
-            totalPrice += parseInt(value.price);
+            totalPrice += parseInt(value.price)*value.quantity;
             count++;
             let quantity=0;
             const itemDiv = document.createElement('div');
@@ -72,12 +74,12 @@ const reloadCard = () => {
                     <p>${value.name}</p>
                     <div class="editButton">
                         <div>Edit</div>
-                        <div>Remove</div>
+                        <div onclick="removeFromCart(${key})">Remove</div>
                     </div>
                     <div class="plusminusSection">
-                    <button onclick="updateCartQuantity(${key}, -1)">-</button>
-                        <div id="cartQuantity_${key}">${quantity}</div>
-                        <button onclick="updateCartQuantity(${key}, 1)">+</button>
+                    <button disabled onclick="updateCartQuantity(${key}, -1)">-</button>
+                        <div id="cartQuantity_${key}">${value.quantity}</div>
+                        <button disabled onclick="updateCartQuantity(${key}, 1)">+</button>
                         
                     </div>
                 </div>
@@ -91,6 +93,8 @@ const reloadCard = () => {
     // Optionally, you can display the total price and count
     const totalDiv = document.getElementById('mealPrice');
     totalDiv.innerHTML = ` ${totalPrice}`;
+    const orderDiv = document.getElementById('orderDiv');
+    orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
 }
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
@@ -110,5 +114,12 @@ function updateCartQuantity(key, change) {
         quantity = Math.max(quantity, 0);
 
         quantityElement.innerText = quantity;
+    }
+}
+
+function removeFromCart(key) {
+    if (listCards[key] !== undefined) {
+        delete listCards[key];
+        reloadCard();
     }
 }

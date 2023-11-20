@@ -35,6 +35,7 @@
     </div>
 
   </div>
+  <div id="toast-container"></div>
   <div id="menuCart">
 
     <div>
@@ -51,8 +52,7 @@
       <a href="javascript:void(0)" class="close-btn" onclick="closeCart()">&times;</a>
       <div class="cart">
         <div class="insideCart">
-          <div class="totalOrder">
-            <p>My Orders(1)</p>
+          <div id="orderDiv" class="totalOrder">
           </div>
           <div id="orderDetails">
 
@@ -72,12 +72,13 @@
               <div id="deliveryFee">0</div>
             </div>
           </div>
-          <div class="payButton"> <button>Pay Now</button></div>
+          <div class="payButton"> <button onclick="showToast()">Pay Now</button></div>
         </div>
       </div>
     </div>
   </div>
   <script src="./scripts/mealPlan.js"></script>
+  <script src="./scripts/toast.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAuth , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
