@@ -27,14 +27,14 @@
       </a>
     </div>
     <div class="lastSection">
-      <a href="Login.html">
-        <h2>Login</h2>
+      <a id="authSection" href="Login.html">
+        
       </a>
       <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
     </div>
 
   </div>
-  <div class="menuCart">
+  <div id="menuCart" class="menuCart">
     <div >
 
       <div>
@@ -85,9 +85,10 @@
     </div>
   </div>
   <script src="./scripts/menu.js"></script>
+  
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import { getAuth , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -104,10 +105,34 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const authSection = document.getElementById("authSection");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById('menuCart').style.height = '100%';
+    authSection.innerHTML = `
+                    <h2 onclick="logout()">Logout</h2>
+                `;
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    console.log(uid);
+    // ...
+  } else {
+    authSection.innerHTML = `
+                    <h2>Login</h2>
+                `;
+    // User is signed out
+    // ...
+  }
+});
 
-const user = auth.currentUser;
-    console.log(auth);
-
+function logout() {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
   </script>
 </body>
 
