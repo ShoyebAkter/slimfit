@@ -8,7 +8,7 @@ const itemsArray = [
 const itemContainer = document.getElementById('itemContainer');
 
 const initApp = () => {
-    const quantity = 0;
+    const quantity = 1;
     const itemsHTML = itemsArray.map((item, key) => `
 <div class="singleItem">
   <img src="${item.image}" alt="" />
@@ -37,7 +37,7 @@ function updateQuantity(key, change) {
         let quantity = parseInt(quantityElement.innerText) + change;
 
         // Ensure quantity is not negative
-        quantity = Math.max(quantity, 0);
+        quantity = Math.max(quantity, 1);
 
         quantityElement.innerText = quantity;
         // console.log(quantity);
@@ -52,6 +52,7 @@ const addtoCart = (key) => {
         listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
         listCards[key].quantity = latestQuantity;
     }
+    showToast();
     reloadCard();
 }
 const reloadCard = () => {
@@ -124,4 +125,25 @@ function removeFromCart(key) {
         delete listCards[key];
         reloadCard();
     }
+}
+function showToast() {
+    // Create a new toast element
+    var toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = "Item is added to the cart";
+
+    // Append the toast to the container
+    document.getElementById("toast-container").appendChild(toast);
+
+    // Show the toast
+    setTimeout(function () {
+        toast.style.display = "block";
+    }, 100);
+
+    // Hide the toast after 3 seconds
+    setTimeout(function () {
+        toast.style.display = "none";
+        // Remove the toast element from the DOM after it's hidden
+        document.getElementById("toast-container").removeChild(toast);
+    }, 3000);
 }
