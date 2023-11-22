@@ -97,13 +97,19 @@ body {
     margin-right: 20px;
   }
 
+  
   #toast-container {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000;
   }
-  
+  #addtocart-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
   .toast {
     display: none;
     background-color: rgb(14, 221, 59);

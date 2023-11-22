@@ -1,3 +1,4 @@
+
 const itemsArray = [
     { id: 1, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "8.00" },
     { id: 2, image: "./images/Modern-Tuna-Casserole_EXPS_THFM19_228112_B09_27_9b 1.png", name: 'Modern-Tuna-Casserole', price: "9.00" },
@@ -51,51 +52,14 @@ const addtoCart = (key) => {
     if (listCards[key] === undefined) {
         listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
         listCards[key].quantity = latestQuantity;
+        listCards[key].totalPrice = parseInt(listCards[key].price)*latestQuantity;
+
+        console.log(listCards[key] );
     }
-    showToast();
+    showAddToCartToast();
     reloadCard();
 }
-const reloadCard = () => {
-    console.log(listCards);
-    let count = 0;
-    let totalPrice = 0;
-    let cartDiv = document.getElementById('orderDetails');
-    cartDiv.innerHTML = ''; // Clear previous content
 
-    listCards.forEach((value, key) => {
-        if (value !== null) {
-            totalPrice += parseInt(value.price)*value.quantity;
-            count++;
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('cart-item');
-            console.log(value.quantity);
-            itemDiv.innerHTML = `
-                <div><img src="${value.image}" alt=""/></div>
-                <div class="itemDetails">
-                    <p>${value.name}</p>
-                    <div class="editButton">
-                        <div>Edit</div>
-                        <div onclick="removeFromCart(${key})">Remove</div>
-                    </div>
-                    <div class="plusminusSection">
-                    <button disabled onclick="updateCartQuantity(${key}, -1,${value.price})">-</button>
-                        <div id="cartQuantity_${key}">${value.quantity}</div>
-                        <button disabled onclick="updateCartQuantity(${key}, 1,${value.price})">+</button>
-                        
-                    </div>
-                </div>
-                <div>RM ${value.price}</div>
-            `;
-
-            cartDiv.appendChild(itemDiv);
-        }
-    });
-
-    const totalDiv = document.getElementById('mealPrice');
-    totalDiv.innerHTML = ` ${totalPrice}`;
-    const orderDiv = document.getElementById('orderDiv');
-    orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
-}
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
 }
@@ -103,21 +67,28 @@ function openCart() {
 function closeCart() {
     document.getElementById('cartSidebar').style.width = '0';
 }
-function updateCartQuantity(key, change, price) {
+function updateCartQuantity(key, change, price,totalPrice) {
     const quantityElement = document.getElementById(`cartQuantity_${key}`);
-    let totalPrice=0;
+    const priceElement = document.getElementById("mealPrice");
+    let cartPrice=0
+    let quantity;
     // console.log(key,change);
     // Ensure the quantityElement is found
     if (quantityElement) {
-        let quantity = parseInt(quantityElement.innerText) + change;
+        quantity = parseInt(quantityElement.innerText) + change;
 
         // Ensure quantity is not negative
-        quantity = Math.max(quantity, 0);
-
+        quantity = Math.max(quantity, 1);
+        totalPrice=price*quantity;
         quantityElement.innerText = quantity;
+        listCards[key].quantity=quantity;
+        listCards[key].totalPrice=totalPrice;
+        
         
     }
-
+    listCards.map(value=>cartPrice+=value.totalPrice)
+    // console.log(cartPrice);
+    priceElement.innerText=cartPrice;
 }
 
 function removeFromCart(key) {
@@ -126,14 +97,14 @@ function removeFromCart(key) {
         reloadCard();
     }
 }
-function showToast() {
+function showAddToCartToast() {
     // Create a new toast element
     var toast = document.createElement("div");
     toast.className = "toast";
     toast.innerHTML = "Item is added to the cart";
 
     // Append the toast to the container
-    document.getElementById("toast-container").appendChild(toast);
+    document.getElementById("addtocart-toast-container").appendChild(toast);
 
     // Show the toast
     setTimeout(function () {
@@ -144,7 +115,53 @@ function showToast() {
     setTimeout(function () {
         toast.style.display = "none";
         // Remove the toast element from the DOM after it's hidden
-        document.getElementById("toast-container").removeChild(toast);
-        window.location.href="payment.html"
+        document.getElementById("addtocart-toast-container").removeChild(toast);
+        
     }, 3000);
+}
+
+function showToast(){
+    window.location.href="payment.html"
+}
+
+const reloadCard = () => {
+    console.log(listCards);
+    let count = 0;
+    let totalPrice = 0;
+    let cartDiv = document.getElementById('orderDetails');
+    cartDiv.innerHTML = ''; // Clear previous content
+
+    listCards.forEach((value, key) => {
+        if (value !== null) {
+            totalPrice += value.totalPrice;
+            count++;
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('cart-item');
+            // console.log(value.quantity);
+            itemDiv.innerHTML = `
+                <div><img src="${value.image}" alt=""/></div>
+                <div class="itemDetails">
+                    <p>${value.name}</p>
+                    <div class="editButton">
+                        <div>Edit</div>
+                        <div onclick="removeFromCart(${key})">Remove</div>
+                    </div>
+                    <div class="plusminusSection">
+                    <button  onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice})">-</button>
+                        <div id="cartQuantity_${key}">${value.quantity}</div>
+                        <button  onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice})">+</button>
+                        
+                    </div>
+                </div>
+                <div >RM ${value.price}</div>
+            `;
+
+            cartDiv.appendChild(itemDiv);
+        }
+    });
+
+    const totalDiv = document.getElementById('mealPrice');
+    totalDiv.innerHTML = ` ${totalPrice}`;
+    const orderDiv = document.getElementById('orderDiv');
+    orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
 }
