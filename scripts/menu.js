@@ -145,5 +145,6 @@ function showToast() {
         toast.style.display = "none";
         // Remove the toast element from the DOM after it's hidden
         document.getElementById("toast-container").removeChild(toast);
+        window.location.href="payment.html"
     }, 3000);
 }
