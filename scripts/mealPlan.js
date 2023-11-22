@@ -6,7 +6,27 @@ const mealItemsArray = [
 ];
 
 const itemContainer = document.getElementById('mealSection');
+function showAddtoCartToast() {
+    // Create a new toast element
+    var toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = "Item is added to the cart";
 
+    // Append the toast to the container
+    document.getElementById("addtocart-toast").appendChild(toast);
+
+    // Show the toast
+    setTimeout(function () {
+        toast.style.display = "block";
+    }, 100);
+
+    // Hide the toast after 3 seconds
+    setTimeout(function () {
+        toast.style.display = "none";
+        // Remove the toast element from the DOM after it's hidden
+        document.getElementById("addtocart-toast").removeChild(toast);
+    }, 300);
+}
 const initApp = () => {
     const quantity = 1;
     const itemsHTML = mealItemsArray.map((item, key) => `
@@ -50,8 +70,9 @@ const mealAddtoCart = (key) => {
     if (listCards[key] === undefined) {
         listCards[key] = JSON.parse(JSON.stringify(mealItemsArray[key]));
         listCards[key].quantity = latestQuantity;
+        listCards[key].totalPrice = parseInt(listCards[key].price)*latestQuantity;
     }
-    showToast();
+    // showAddtoCartToast();
     reloadCard();
 }
 const reloadCard = () => {
@@ -74,13 +95,13 @@ const reloadCard = () => {
                 <div class="itemDetails">
                     <p>${value.name}</p>
                     <div class="editButton">
-                        <div>Edit</div>
+                        <div onclick="toggleEdit(${key})">Edit</div>
                         <div onclick="removeFromCart(${key})">Remove</div>
                     </div>
                     <div class="plusminusSection">
-                    <button disabled onclick="updateCartQuantity(${key}, -1)">-</button>
+                    <button  id="minusBtn_${key}" disabled onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice})">-</button>
                         <div id="cartQuantity_${key}">${value.quantity}</div>
-                        <button disabled onclick="updateCartQuantity(${key}, 1)">+</button>
+                        <button id="plusBtn_${key}" disabled onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice})">+</button>
                         
                     </div>
                 </div>
@@ -97,6 +118,17 @@ const reloadCard = () => {
     const orderDiv = document.getElementById('orderDiv');
     orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
 }
+function toggleEdit(key) {
+    var minusBtn = document.getElementById(`minusBtn_${key}`);
+    var plusBtn = document.getElementById(`plusBtn_${key}`);
+
+    // Toggle the disabled attribute
+    minusBtn.disabled = !minusBtn.disabled;
+    plusBtn.disabled = !plusBtn.disabled;
+}
+function showToast(){
+    window.location.href="payment.html"
+}
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
 }
@@ -104,18 +136,24 @@ function openCart() {
 function closeCart() {
     document.getElementById('cartSidebar').style.width = '0';
 }
-function updateCartQuantity(key, change) {
+function updateCartQuantity(key, change, price,totalPrice) {
     const quantityElement = document.getElementById(`cartQuantity_${key}`);
-    console.log(key,change);
+    const priceElement = document.getElementById("mealPrice");
+    let cartPrice=0
+    let quantity;
     // Ensure the quantityElement is found
     if (quantityElement) {
-        let quantity = parseInt(quantityElement.innerText) + change;
+        quantity = parseInt(quantityElement.innerText) + change;
 
-        // Ensure quantity is not negative
-        quantity = Math.max(quantity, 0);
-
+        quantity = Math.max(quantity, 1);
+        totalPrice=price*quantity;
         quantityElement.innerText = quantity;
+        listCards[key].quantity=quantity;
+        listCards[key].totalPrice=totalPrice;
     }
+    listCards.map(value=>cartPrice+=value.totalPrice)
+    // console.log(cartPrice);
+    priceElement.innerText=cartPrice;
 }
 
 function removeFromCart(key) {
@@ -124,24 +162,4 @@ function removeFromCart(key) {
         reloadCard();
     }
 }
-function showToast() {
-    // Create a new toast element
-    var toast = document.createElement("div");
-    toast.className = "toast";
-    toast.innerHTML = "Item is added to the cart";
 
-    // Append the toast to the container
-    document.getElementById("toast-container").appendChild(toast);
-
-    // Show the toast
-    setTimeout(function () {
-        toast.style.display = "block";
-    }, 100);
-
-    // Hide the toast after 3 seconds
-    setTimeout(function () {
-        toast.style.display = "none";
-        // Remove the toast element from the DOM after it's hidden
-        document.getElementById("toast-container").removeChild(toast);
-    }, 3000);
-}

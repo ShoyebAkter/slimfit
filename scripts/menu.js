@@ -117,7 +117,7 @@ function showAddToCartToast() {
         // Remove the toast element from the DOM after it's hidden
         document.getElementById("addtocart-toast-container").removeChild(toast);
         
-    }, 3000);
+    }, 300);
 }
 
 function showToast(){
@@ -143,13 +143,13 @@ const reloadCard = () => {
                 <div class="itemDetails">
                     <p>${value.name}</p>
                     <div class="editButton">
-                        <div>Edit</div>
+                        <div onclick="toggleEdit(${key})">Edit</div>
                         <div onclick="removeFromCart(${key})">Remove</div>
                     </div>
                     <div class="plusminusSection">
-                    <button  onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice})">-</button>
+                    <button id="minusBtn_${key}" disabled onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice})">-</button>
                         <div id="cartQuantity_${key}">${value.quantity}</div>
-                        <button  onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice})">+</button>
+                        <button id="plusBtn_${key}" disabled onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice})">+</button>
                         
                     </div>
                 </div>
@@ -164,4 +164,13 @@ const reloadCard = () => {
     totalDiv.innerHTML = ` ${totalPrice}`;
     const orderDiv = document.getElementById('orderDiv');
     orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
+}
+
+function toggleEdit(key) {
+    var minusBtn = document.getElementById(`minusBtn_${key}`);
+    var plusBtn = document.getElementById(`plusBtn_${key}`);
+
+    // Toggle the disabled attribute
+    minusBtn.disabled = !minusBtn.disabled;
+    plusBtn.disabled = !plusBtn.disabled;
 }
