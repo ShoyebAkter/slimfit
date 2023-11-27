@@ -15,6 +15,15 @@ body {
     text-align: center;
     padding-block: 20px;
 }
+.menuTypes{
+    margin-left: 60px;
+}
+.menuTypes div{
+    padding-block: 5px;
+}
+.menuTypes input{
+    margin-right: 5PX;
+}
 .coverphoto{
     height: 256px;
     width: 100%;
@@ -119,4 +128,7 @@ body {
     margin-bottom: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
+  /* Your existing styles here */
+
+
   

@@ -5,31 +5,125 @@ const itemsArray = [
     { id: 3, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "7.00" },
     // ... more items
 ];
+const beefArray = [
+    { id: 1, image: "./images/Beef/basil_beef_curry_cauli_rice.jpg", name: 'basil_beef_curry_cauli_rice', price: "8.00" },
+    { id: 2, image: "./images/Beef/basil-beef-moroccan-salad.jpg", name: 'basil-beef-moroccan-salad', price: "9.00" },
+    { id: 3, image: "./images/Beef/basil-beef-vege-with-hummus.jpg", name: 'basil-beef-vege-with-hummus', price: "7.00" },
+    // ... more items
+];
+const chickenArray = [
+    { id: 1, image: "./images/Chicken/black_pepper_chicken_vege_with_hummus_1.jpg", name: 'black_pepper_chicken_vege_with_hummus_1', price: "8.00" },
+    { id: 2, image: "./images/Chicken/oat_chicken_peppery_pasta.jpg", name: 'oat_chicken_peppery_pasta', price: "9.00" },
+    { id: 3, image: "./images/Chicken/oats_chicken_moroccan_salad.jpg", name: 'oats_chicken_moroccan_salad', price: "7.00" },
+    // ... more items
+];
+const fishArray = [
+    { id: 1, image: "./images/fish/_black_pepper_salmon-_moroccan_salad.jpg", name: '_black_pepper_salmon-_moroccan_salad', price: "8.00" },
+    { id: 2, image: "./images/fish/_black_pepper_salmon-vege_with_hummus.jpg", name: '_black_pepper_salmon-vege_with_hummus', price: "9.00" },
+    { id: 3, image: "./images/fish/pesto_salmon_curry_cauli_rice.jpg", name: 'pesto_salmon_curry_cauli_rice', price: "7.00" },
+    // ... more items
+];
+const vegArray = [
+    { id: 1, image: "./images/veg/pesto_salmon_curry_cauli_rice.jpg", name: 'pesto_salmon_curry_cauli_rice', price: "8.00" },
+    { id: 2, image: "./images/veg/pesto_salmon_curry_cauli_rice.jpg", name: 'pesto_salmon_curry_cauli_rice', price: "9.00" },
+    { id: 3, image: "./images/veg/sweet_sour_minched_plant_based_curry_cauli_rice.jpg", name: 'sweet_sour_minched_plant_based_curry_cauli_rice', price: "7.00" },
+    // ... more items
+];
 
 const itemContainer = document.getElementById('itemContainer');
 
-const initApp = () => {
+const initApp = (type) => {
     const quantity = 1;
-    const itemsHTML = itemsArray.map((item, key) => `
-<div class="singleItem">
-  <img src="${item.image}" alt="" />
-                    <div>${item.name}</div>
-                    <div>RM ${item.price}</div>
-                    <div class="cartSection">
-                    <div class="addSection">
-                        <button onclick="updateQuantity(${key}, -1)">-</button>
-                        <div id="quantity_${key}">${quantity}</div>
-                        <button onclick="updateQuantity(${key}, 1)">+</button>
-                    </div>
-                    <button onClick="addtoCart(${key})">Add to cart</button>
-                </div>
-                    </div>
-`).join('');
+    console.log(type);
+    let itemsHTML;
+    if(type==="beef"){
+        itemsHTML = beefArray.map((item, key) => `
+        <div class="singleItem">
+          <img src="${item.image}" alt="" />
+                            <div>${item.name}</div>
+                            <div>RM ${item.price}</div>
+                            <div class="cartSection">
+                            <div class="addSection">
+                                <button onclick="updateQuantity(${key}, -1)">-</button>
+                                <div id="quantity_${key}">${quantity}</div>
+                                <button onclick="updateQuantity(${key}, 1)">+</button>
+                            </div>
+                            <button onClick="addtoCart(${key})">Add to cart</button>
+                        </div>
+                            </div>
+        `).join('');
+    }else if(type==="chicken"){
+        
+          itemsHTML = chickenArray.map((item, key) => `
+            <div class="singleItem">
+              <img src="${item.image}" alt="" />
+                                <div>${item.name}</div>
+                                <div>RM ${item.price}</div>
+                                <div class="cartSection">
+                                <div class="addSection">
+                                    <button onclick="updateQuantity(${key}, -1)">-</button>
+                                    <div id="quantity_${key}">${quantity}</div>
+                                    <button onclick="updateQuantity(${key}, 1)">+</button>
+                                </div>
+                                <button onClick="addtoCart(${key})">Add to cart</button>
+                            </div>
+                                </div>
+            `).join('');
+        
+    }else if(type==="fish"){
+        itemsHTML = fishArray.map((item, key) => `
+        <div class="singleItem">
+          <img src="${item.image}" alt="" />
+                            <div>${item.name}</div>
+                            <div>RM ${item.price}</div>
+                            <div class="cartSection">
+                            <div class="addSection">
+                                <button onclick="updateQuantity(${key}, -1)">-</button>
+                                <div id="quantity_${key}">${quantity}</div>
+                                <button onclick="updateQuantity(${key}, 1)">+</button>
+                            </div>
+                            <button onClick="addtoCart(${key})">Add to cart</button>
+                        </div>
+                            </div>
+        `).join('');
+    }else if(type==="veg"){
+        itemsHTML = vegArray.map((item, key) => `
+        <div class="singleItem">
+          <img src="${item.image}" alt="" />
+                            <div>${item.name}</div>
+                            <div>RM ${item.price}</div>
+                            <div class="cartSection">
+                            <div class="addSection">
+                                <button onclick="updateQuantity(${key}, -1)">-</button>
+                                <div id="quantity_${key}">${quantity}</div>
+                                <button onclick="updateQuantity(${key}, 1)">+</button>
+                            </div>
+                            <button onClick="addtoCart(${key})">Add to cart</button>
+                        </div>
+                            </div>
+        `).join('');
+    }else{
+        itemsHTML = itemsArray.map((item, key) => `
+        <div class="singleItem">
+          <img src="${item.image}" alt="" />
+                            <div>${item.name}</div>
+                            <div>RM ${item.price}</div>
+                            <div class="cartSection">
+                            <div class="addSection">
+                                <button onclick="updateQuantity(${key}, -1)">-</button>
+                                <div id="quantity_${key}">${quantity}</div>
+                                <button onclick="updateQuantity(${key}, 1)">+</button>
+                            </div>
+                            <button onClick="addtoCart(${key})">Add to cart</button>
+                        </div>
+                            </div>
+        `).join('');
+    }
+
 
     itemContainer.innerHTML = itemsHTML;
 
 }
-initApp();
 function updateQuantity(key, change) {
     const quantityElement = document.getElementById(`quantity_${key}`);
 
@@ -52,9 +146,9 @@ const addtoCart = (key) => {
     if (listCards[key] === undefined) {
         listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
         listCards[key].quantity = latestQuantity;
-        listCards[key].totalPrice = parseInt(listCards[key].price)*latestQuantity;
+        listCards[key].totalPrice = parseInt(listCards[key].price) * latestQuantity;
 
-        console.log(listCards[key] );
+        console.log(listCards[key]);
     }
     showAddToCartToast();
     reloadCard();
@@ -67,10 +161,10 @@ function openCart() {
 function closeCart() {
     document.getElementById('cartSidebar').style.width = '0';
 }
-function updateCartQuantity(key, change, price,totalPrice) {
+function updateCartQuantity(key, change, price, totalPrice) {
     const quantityElement = document.getElementById(`cartQuantity_${key}`);
     const priceElement = document.getElementById("mealPrice");
-    let cartPrice=0
+    let cartPrice = 0
     let quantity;
     // console.log(key,change);
     // Ensure the quantityElement is found
@@ -79,16 +173,16 @@ function updateCartQuantity(key, change, price,totalPrice) {
 
         // Ensure quantity is not negative
         quantity = Math.max(quantity, 1);
-        totalPrice=price*quantity;
+        totalPrice = price * quantity;
         quantityElement.innerText = quantity;
-        listCards[key].quantity=quantity;
-        listCards[key].totalPrice=totalPrice;
-        
-        
+        listCards[key].quantity = quantity;
+        listCards[key].totalPrice = totalPrice;
+
+
     }
-    listCards.map(value=>cartPrice+=value.totalPrice)
+    listCards.map(value => cartPrice += value.totalPrice)
     // console.log(cartPrice);
-    priceElement.innerText=cartPrice;
+    priceElement.innerText = cartPrice;
 }
 
 function removeFromCart(key) {
@@ -116,12 +210,12 @@ function showAddToCartToast() {
         toast.style.display = "none";
         // Remove the toast element from the DOM after it's hidden
         document.getElementById("addtocart-toast-container").removeChild(toast);
-        
+
     }, 300);
 }
 
-function showToast(){
-    window.location.href="payment.html"
+function showToast() {
+    window.location.href = "payment.html"
 }
 
 const reloadCard = () => {
@@ -173,4 +267,19 @@ function toggleEdit(key) {
     // Toggle the disabled attribute
     minusBtn.disabled = !minusBtn.disabled;
     plusBtn.disabled = !plusBtn.disabled;
+}
+
+function loadContent(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menuCart').innerHTML = data;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+// Example: Navigation function
+function navigateTo(page) {
+    loadContent(page + '.html');
 }

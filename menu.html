@@ -16,16 +16,23 @@
       <a >
         <h2>Logo</h2>
       </a>
-      <a href="menu.html">
+      <a href="#" >
         <h2>Menu</h2>
+        
       </a>
-      <a href="mealPlan.html">
+      
+      
+      <a onclick="navigateTo('mealPlan')">
         <h2>Meal Plan</h2>
+      </a>
+      <a href="location.html">
+        <h2>Location</h2>
       </a>
       <a href="contactUs.html">
         <h2>Contact Us</h2>
       </a>
     </div>
+    
     <div class="lastSection">
       <a id="authSection" href="index.html">
         
@@ -34,6 +41,7 @@
     </div>
 
   </div>
+  
   <div id="addtocart-toast-container"></div>
   <div id="menuCart" class="menuCart">
     <div >
@@ -44,6 +52,12 @@
   
       <div class="menu">
         <h1>Menu</h1>
+        <div class="menuTypes">
+          <div> <input name="menuType" onclick="initApp('beef')" type="radio"/> Beef</div>
+          <div> <input name="menuType" onclick="initApp('chicken')" type="radio"/>Chicken</div>
+          <div> <input name="menuType" onclick="initApp('fish')" type="radio"/>Fish</div>
+          <div> <input name="menuType" onclick="initApp('veg')" type="radio"/>Veg</div>
+        </div>
         <div id="itemContainer" class="itemSection">
   
   
