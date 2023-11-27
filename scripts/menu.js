@@ -48,7 +48,7 @@ const initApp = (type) => {
                                 <div id="quantity_${key}">${quantity}</div>
                                 <button onclick="updateQuantity(${key}, 1)">+</button>
                             </div>
-                            <button onClick="addtoCart(${key})">Add to cart</button>
+                            <button onclick="addtoCart('${item.image}', '${item.name}', '${item.price}',${key})">Add to cart</button>
                         </div>
                             </div>
         `).join('');
@@ -65,7 +65,7 @@ const initApp = (type) => {
                                     <div id="quantity_${key}">${quantity}</div>
                                     <button onclick="updateQuantity(${key}, 1)">+</button>
                                 </div>
-                                <button onClick="addtoCart(${key})">Add to cart</button>
+                                <button onclick="addtoCart('${item.image}', '${item.name}', '${item.price}',${key})">Add to cart</button>
                             </div>
                                 </div>
             `).join('');
@@ -82,7 +82,7 @@ const initApp = (type) => {
                                 <div id="quantity_${key}">${quantity}</div>
                                 <button onclick="updateQuantity(${key}, 1)">+</button>
                             </div>
-                            <button onClick="addtoCart(${key})">Add to cart</button>
+                            <button onclick="addtoCart('${item.image}', '${item.name}', '${item.price}',${key})">Add to cart</button>
                         </div>
                             </div>
         `).join('');
@@ -98,7 +98,7 @@ const initApp = (type) => {
                                 <div id="quantity_${key}">${quantity}</div>
                                 <button onclick="updateQuantity(${key}, 1)">+</button>
                             </div>
-                            <button onClick="addtoCart(${key})">Add to cart</button>
+                            <button onClick="addtoCart('${item.image}', '${item.name}', '${item.price}',${key})">Add to cart</button>
                         </div>
                             </div>
         `).join('');
@@ -114,7 +114,7 @@ const initApp = (type) => {
                                 <div id="quantity_${key}">${quantity}</div>
                                 <button onclick="updateQuantity(${key}, 1)">+</button>
                             </div>
-                            <button onClick="addtoCart(${key})">Add to cart</button>
+                            <button onclick="addtoCart('${item.image}', '${item.name}', '${item.price}', ${key})">Add to cart</button>
                         </div>
                             </div>
         `).join('');
@@ -124,6 +124,7 @@ const initApp = (type) => {
     itemContainer.innerHTML = itemsHTML;
 
 }
+initApp()
 function updateQuantity(key, change) {
     const quantityElement = document.getElementById(`quantity_${key}`);
 
@@ -140,16 +141,31 @@ function updateQuantity(key, change) {
 
 }
 const listCards = [];
-const addtoCart = (key) => {
+const addtoCart = (image,name,price,key,type) => {
+    const object={
+        name:name,
+        image:image,
+        price:price
+    }
     const quantityElement = document.getElementById(`quantity_${key}`);
     const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
-    if (listCards[key] === undefined) {
-        listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));
-        listCards[key].quantity = latestQuantity;
-        listCards[key].totalPrice = parseInt(listCards[key].price) * latestQuantity;
+    object.quantity=latestQuantity;
+    object.totalPrice= parseInt(price) * latestQuantity;
+    console.log(object);
+    listCards.push(JSON.parse(JSON.stringify(object)));
+    // if (listCards[key] === undefined) {
+    //     if(type==="beef"){listCards[key] = JSON.parse(JSON.stringify(beefArray[key]));}
+    //     else if(type==="chicken"){listCards[key] = JSON.parse(JSON.stringify(chickenArray[key]));}
+    //     else if(type==="fish"){listCards[key] = JSON.parse(JSON.stringify(fishArray[key]));}
+    //     else if(type==="veg"){listCards[key] = JSON.parse(JSON.stringify(vegArray[key]));}
+    //     else{listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));}
+        
+    //     listCards[key].quantity = latestQuantity;
+    //     listCards[key].totalPrice = parseInt(listCards[key].price) * latestQuantity;
 
-        console.log(listCards[key]);
-    }
+    //     console.log(listCards[key]);
+    // }
+    console.log(listCards);
     showAddToCartToast();
     reloadCard();
 }
