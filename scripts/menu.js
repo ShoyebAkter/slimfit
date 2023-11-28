@@ -31,15 +31,16 @@ const vegArray = [
 ];
 
 const itemContainer = document.getElementById('itemContainer');
+const menuContainer = document.getElementById('menuCart');
 
 const initApp = (type) => {
     const quantity = 1;
     console.log(type);
     let itemsHTML;
-    if(type==="beef"){
+    if (type === "beef") {
         itemsHTML = beefArray.map((item, key) => `
         <div class="singleItem">
-          <img src="${item.image}" alt="" />
+          <img onclick="productDetails('${item.image}', '${item.name}', '${item.price}',${key},${quantity})" src="${item.image}" alt="" />
                             <div>${item.name}</div>
                             <div>RM ${item.price}</div>
                             <div class="cartSection">
@@ -52,9 +53,9 @@ const initApp = (type) => {
                         </div>
                             </div>
         `).join('');
-    }else if(type==="chicken"){
-        
-          itemsHTML = chickenArray.map((item, key) => `
+    } else if (type === "chicken") {
+
+        itemsHTML = chickenArray.map((item, key) => `
             <div class="singleItem">
               <img src="${item.image}" alt="" />
                                 <div>${item.name}</div>
@@ -69,8 +70,8 @@ const initApp = (type) => {
                             </div>
                                 </div>
             `).join('');
-        
-    }else if(type==="fish"){
+
+    } else if (type === "fish") {
         itemsHTML = fishArray.map((item, key) => `
         <div class="singleItem">
           <img src="${item.image}" alt="" />
@@ -86,7 +87,7 @@ const initApp = (type) => {
                         </div>
                             </div>
         `).join('');
-    }else if(type==="veg"){
+    } else if (type === "veg") {
         itemsHTML = vegArray.map((item, key) => `
         <div class="singleItem">
           <img src="${item.image}" alt="" />
@@ -102,7 +103,7 @@ const initApp = (type) => {
                         </div>
                             </div>
         `).join('');
-    }else{
+    } else {
         itemsHTML = itemsArray.map((item, key) => `
         <div class="singleItem">
           <img src="${item.image}" alt="" />
@@ -119,12 +120,30 @@ const initApp = (type) => {
                             </div>
         `).join('');
     }
-
-
     itemContainer.innerHTML = itemsHTML;
 
 }
 initApp()
+const productDetails = (image, name, price, key, quantity) => {
+    const itemsHTML = `
+    <div class="productDetails">
+      <img src="${image}" alt="" />
+                        <div >
+                            <div class="productName">${name}</div>
+                            <div class="productPrice">RM ${price}</div>
+                            <div class="cartSection">
+                            <div class="addSection">
+                            <button onclick="updateQuantity(${key}, -1)">-</button>
+                            <div id="quantity_${key}">${quantity}</div>
+                            <button onclick="updateQuantity(${key}, 1)">+</button>
+                            </div>
+                            <button onclick="addtoCart('${image}', '${name}', '${price}',${key})">Add to cart</button>
+                            </div>
+                        </div>
+    </div>
+    `
+    menuContainer.innerHTML = itemsHTML;
+}
 function updateQuantity(key, change) {
     const quantityElement = document.getElementById(`quantity_${key}`);
 
@@ -141,34 +160,34 @@ function updateQuantity(key, change) {
 
 }
 const listCards = [];
-const addtoCart = (image,name,price,key,type) => {
-    const object={
-        name:name,
-        image:image,
-        price:price
-    }
-    const quantityElement = document.getElementById(`quantity_${key}`);
-    const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
-    object.quantity=latestQuantity;
-    object.totalPrice= parseInt(price) * latestQuantity;
-    console.log(object);
-    listCards.push(JSON.parse(JSON.stringify(object)));
-    // if (listCards[key] === undefined) {
-    //     if(type==="beef"){listCards[key] = JSON.parse(JSON.stringify(beefArray[key]));}
-    //     else if(type==="chicken"){listCards[key] = JSON.parse(JSON.stringify(chickenArray[key]));}
-    //     else if(type==="fish"){listCards[key] = JSON.parse(JSON.stringify(fishArray[key]));}
-    //     else if(type==="veg"){listCards[key] = JSON.parse(JSON.stringify(vegArray[key]));}
-    //     else{listCards[key] = JSON.parse(JSON.stringify(itemsArray[key]));}
-        
-    //     listCards[key].quantity = latestQuantity;
-    //     listCards[key].totalPrice = parseInt(listCards[key].price) * latestQuantity;
+const addtoCart = (image, name, price, key, type) => {
+    const item = localStorage.getItem("cartItem");
+    const cartItem = JSON.parse(item) || []; // Initialize as an empty array if it's null or undefined
+    const isNameInArray = cartItem.some(obj => obj.name === name);
 
-    //     console.log(listCards[key]);
-    // }
-    console.log(listCards);
-    showAddToCartToast();
-    reloadCard();
+    if (isNameInArray) {
+        // Name is already in the cart, handle accordingly (e.g., show a message)
+        console.log(`${name} is already in the cart. Not adding.`);
+    } else {
+        const object = {
+            name: name,
+            image: image,
+            price: price
+        }
+        const quantityElement = document.getElementById(`quantity_${key}`);
+        const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
+        object.quantity = latestQuantity;
+        object.totalPrice = parseInt(price) * latestQuantity;
+        console.log(object);
+        listCards.push(JSON.parse(JSON.stringify(object)));
+        const listCardsJson = JSON.stringify(listCards);
+        localStorage.setItem("cartItem", listCardsJson);
+        console.log(listCards);
+        showAddToCartToast();
+        reloadCard();
+    }
 }
+
 
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
@@ -235,13 +254,15 @@ function showToast() {
 }
 
 const reloadCard = () => {
-    console.log(listCards);
+    const item = localStorage.getItem("cartItem");
+    const cartItem = JSON.parse(item)
+    console.log(cartItem);
     let count = 0;
     let totalPrice = 0;
     let cartDiv = document.getElementById('orderDetails');
     cartDiv.innerHTML = ''; // Clear previous content
 
-    listCards.forEach((value, key) => {
+    cartItem.forEach((value, key) => {
         if (value !== null) {
             totalPrice += value.totalPrice;
             count++;
@@ -273,8 +294,9 @@ const reloadCard = () => {
     const totalDiv = document.getElementById('mealPrice');
     totalDiv.innerHTML = ` ${totalPrice}`;
     const orderDiv = document.getElementById('orderDiv');
-    orderDiv.innerHTML = `<p>My Orders(${listCards.length})</p>`;
+    orderDiv.innerHTML = `<p>My Orders(${cartItem.length})</p>`;
 }
+reloadCard()
 
 function toggleEdit(key) {
     var minusBtn = document.getElementById(`minusBtn_${key}`);

@@ -133,6 +133,26 @@ body {
     height:150px;
     width: 150px;
   }
-
-
-  
+.productDetails{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productDetails img{
+    width: 400px;
+    height: 400px;
+    margin-right: 40px;
+}
+  .productName{
+    font-weight: 600;
+    font-size: large;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .productPrice{
+    font-weight: 300;
+    font-size: large;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
