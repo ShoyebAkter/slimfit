@@ -2,7 +2,7 @@
 const itemsArray = [
     { id: 1, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "8.00" },
     { id: 2, image: "./images/Modern-Tuna-Casserole_EXPS_THFM19_228112_B09_27_9b 1.png", name: 'Modern-Tuna-Casserole', price: "9.00" },
-    { id: 3, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "7.00" },
+    { id: 3, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus2', price: "7.00" },
     // ... more items
 ];
 const beefArray = [
