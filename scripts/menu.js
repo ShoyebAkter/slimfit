@@ -196,36 +196,63 @@ function openCart() {
 function closeCart() {
     document.getElementById('cartSidebar').style.width = '0';
 }
-function updateCartQuantity(key, change, price, totalPrice) {
+function updateCartQuantity(key, change, price, totalPrice,name) {
     const quantityElement = document.getElementById(`cartQuantity_${key}`);
     const priceElement = document.getElementById("mealPrice");
     let cartPrice = 0
     let quantity;
     // console.log(key,change);
     // Ensure the quantityElement is found
-    if (quantityElement) {
+    const item = localStorage.getItem("cartItem");
+    const cartItem = JSON.parse(item) || []; // Initialize as an empty array if it's null or undefined
+    const indexToUpdate = cartItem.findIndex(obj => obj.name === name);
+    console.log(indexToUpdate);
+    if (quantityElement && indexToUpdate !== -1) {
         quantity = parseInt(quantityElement.innerText) + change;
 
         // Ensure quantity is not negative
         quantity = Math.max(quantity, 1);
+        // console.log(quantity);
         totalPrice = price * quantity;
+        
         quantityElement.innerText = quantity;
-        listCards[key].quantity = quantity;
-        listCards[key].totalPrice = totalPrice;
+        console.log(cartItem[indexToUpdate]);
+        cartItem[indexToUpdate].quantity = quantity;
+        
+        cartItem[indexToUpdate].totalPrice = totalPrice;
+
+        // Update local storage with the modified cartItem
+        localStorage.setItem("cartItem", JSON.stringify(cartItem));
+        // reloadCard()
+        // listCards[key].quantity = quantity;
+        // listCards[key].totalPrice = totalPrice;
 
 
     }
-    listCards.map(value => cartPrice += value.totalPrice)
+
+    cartItem.map(value => cartPrice += value.totalPrice)
     // console.log(cartPrice);
     priceElement.innerText = cartPrice;
 }
 
-function removeFromCart(key) {
-    if (listCards[key] !== undefined) {
-        delete listCards[key];
+function removeFromCart(name) {
+    console.log(name);
+    const item = localStorage.getItem("cartItem");
+    const cartItem = JSON.parse(item) || []; // Initialize as an empty array if it's null or undefined
+    const indexToRemove = cartItem.findIndex(obj => obj.name === name);
+
+    if (indexToRemove !== -1) {
+        // Remove the object from cartItem using splice
+        cartItem.splice(indexToRemove, 1);
+
+        // Update local storage with the modified cartItem
+        localStorage.setItem("cartItem", JSON.stringify(cartItem));
+
+        // Reload the card or perform any other necessary actions
         reloadCard();
     }
 }
+
 function showAddToCartToast() {
     // Create a new toast element
     var toast = document.createElement("div");
@@ -275,12 +302,12 @@ const reloadCard = () => {
                     <p>${value.name}</p>
                     <div class="editButton">
                         <div onclick="toggleEdit(${key})">Edit</div>
-                        <div onclick="removeFromCart(${key})">Remove</div>
+                        <div onclick="removeFromCart('${value.name}')">Remove</div>
                     </div>
                     <div class="plusminusSection">
-                    <button id="minusBtn_${key}" disabled onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice})">-</button>
+                    <button id="minusBtn_${key}" disabled onclick="updateCartQuantity(${key}, -1,${value.price},${value.totalPrice},'${value.name}')">-</button>
                         <div id="cartQuantity_${key}">${value.quantity}</div>
-                        <button id="plusBtn_${key}" disabled onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice})">+</button>
+                        <button id="plusBtn_${key}" disabled onclick="updateCartQuantity(${key}, 1,${value.price},${value.totalPrice},'${value.name}')">+</button>
                         
                     </div>
                 </div>
