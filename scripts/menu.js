@@ -160,11 +160,11 @@ function updateQuantity(key, change) {
 
 }
 const listCards = [];
-const addtoCart = (image, name, price, key, type) => {
+const addtoCart = (image, name, price, key) => {
     const item = localStorage.getItem("cartItem");
     const cartItem = JSON.parse(item) || []; // Initialize as an empty array if it's null or undefined
     const isNameInArray = cartItem.some(obj => obj.name === name);
-
+console.log(cartItem);
     if (isNameInArray) {
         // Name is already in the cart, handle accordingly (e.g., show a message)
         console.log(`${name} is already in the cart. Not adding.`);
@@ -178,16 +178,14 @@ const addtoCart = (image, name, price, key, type) => {
         const latestQuantity = quantityElement ? parseInt(quantityElement.innerText) : 0;
         object.quantity = latestQuantity;
         object.totalPrice = parseInt(price) * latestQuantity;
-        console.log(object);
-        listCards.push(JSON.parse(JSON.stringify(object)));
-        const listCardsJson = JSON.stringify(listCards);
+        cartItem.push(JSON.parse(JSON.stringify(object)));
+        const listCardsJson = JSON.stringify(cartItem);
         localStorage.setItem("cartItem", listCardsJson);
         console.log(listCards);
         showAddToCartToast();
         reloadCard();
     }
 }
-
 
 function openCart() {
     document.getElementById('cartSidebar').style.width = '500px';
@@ -277,7 +275,7 @@ function showAddToCartToast() {
 }
 
 function showToast() {
-    window.location.href = "payment.html"
+    window.location.href = "schedule.html"
 }
 
 const reloadCard = () => {
@@ -322,6 +320,7 @@ const reloadCard = () => {
     totalDiv.innerHTML = ` ${totalPrice}`;
     const orderDiv = document.getElementById('orderDiv');
     orderDiv.innerHTML = `<p>My Orders(${cartItem.length})</p>`;
+    localStorage.setItem("total",totalPrice);
 }
 reloadCard()
 
