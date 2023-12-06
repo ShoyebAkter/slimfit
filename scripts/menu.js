@@ -24,8 +24,8 @@ const fishArray = [
     // ... more items
 ];
 const vegArray = [
-    { id: 1, image: "./images/veg/pesto_salmon_curry_cauli_rice.jpg", name: 'pesto_salmon_curry_cauli_rice', price: "8.00" },
-    { id: 2, image: "./images/veg/pesto_salmon_curry_cauli_rice.jpg", name: 'pesto_salmon_curry_cauli_rice', price: "9.00" },
+    { id: 1, image: "./images/veg/_black_pepper-vege_with_hummus.jpg", name: 'black_pepper-vege_with_hummus', price: "8.00" },
+    { id: 2, image: "./images/veg/black_pepper_fillet_plant_based_meatball_curry_cauli_rice.jpg", name: 'black_pepper_fillet_plant_based_meatball_curry_cauli_rice', price: "9.00" },
     { id: 3, image: "./images/veg/sweet_sour_minched_plant_based_curry_cauli_rice.jpg", name: 'sweet_sour_minched_plant_based_curry_cauli_rice', price: "7.00" },
     // ... more items
 ];
