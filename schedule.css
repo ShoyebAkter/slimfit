@@ -71,6 +71,7 @@
     background-color:#323233;
     border: none;
     color: #fff;
+    cursor: pointer;
   }
   .heading{
     font-size:x-large;

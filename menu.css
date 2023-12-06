@@ -48,6 +48,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.logo{
+  height: 70px;
+  width: 100px;
+}
 .cartSection button{
     background-color: #D9D9D9;
     height: 38px;
