@@ -29,6 +29,8 @@
     background-color: #131313;
     color: white;
     padding: 20px 30px;
+    height: 64px;
+    font: 14px/22px "Lato", Arial, sans-serif;
   }
   .firstSection{
     display: flex;
@@ -48,4 +50,5 @@
 .logo{
   height: 70px;
   width: 100px;
+  padding-top: 10px;
 }

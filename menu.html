@@ -16,6 +16,29 @@
       
         <img class="logo" src="./images/slimfit logo.png" alt=""/>
       
+     
+    </div>
+    
+    <div class="lastSection">
+      <a href="menu.html" >
+        <h2>Menu</h2>
+        
+      </a> 
+      <a href="contactUs.html">
+        <h2>Contact Us</h2>
+      </a>
+      <a id="authSection" href="index.html">
+        
+      </a>
+      <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
+    </div>
+
+  </div>
+  <!-- <div class="navbar">
+    <div class="firstSection">
+      
+        <img class="logo" src="./images/slimfit logo.png" alt=""/>
+      
       <a href="menu.html" >
         <h2>Menu</h2>
         
@@ -32,19 +55,31 @@
       <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
     </div>
 
-  </div>
+  </div> -->
   
   <div id="addtocart-toast-container"></div>
   <div id="menuCart" class="menuCart">
     <div >
 
       <div>
-        <img class="coverphoto" src="./images/coverphoto.png" alt="cover photo" />
+        <div class="carousel" data-carousel="1" data-speed="2000">
+          <span class="carousel-control-left"></span>
+          <span class="carousel-control-right"></span>
+          <div class="carousel-content">
+            <!-- add extra last pic first and extra first pic last for hover effect to work properly  -->
+            <img src="./images/carouselimage/beef.jpg" alt="image 5" />
+            <img src="./images/carouselimage/chicken.jpg" alt="image 2" />
+            <img src="./images/carouselimage/fish.jpg" alt="image 3" />
+        
+            <img src="./images/carouselimage/veg.jpg" alt="image 4" />
+        </div>
+        </div>
       </div>
-  
+      <h1>Menu</h1>
       <div class="menu">
-        <h1>Menu</h1>
+        
         <div class="menuTypes">
+          <div>Category</div>
           <div> <input name="menuType" onclick="initApp('beef')" type="radio"/> Beef</div>
           <div> <input name="menuType" onclick="initApp('chicken')" type="radio"/>Chicken</div>
           <div> <input name="menuType" onclick="initApp('fish')" type="radio"/>Fish</div>

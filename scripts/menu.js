@@ -1,3 +1,77 @@
+if (document.querySelectorAll(".carousel").length > 0) {
+    let carousels = document.querySelectorAll(".carousel");
+    carousels.forEach(carousel => newCarousel(carousel));
+  
+    function newCarousel(carousel) {
+      let carouselChildren = document.querySelector(
+        `.carousel[data-carousel="${carousel.dataset.carousel}"]`
+      ).children;
+      let speed = carousel.dataset.speed;
+      let carouselContent = document.querySelectorAll(`.carousel-content`)[
+        carousel.dataset.carousel - 1
+      ];
+      const carouselLength = carouselContent.children.length;
+      let width = window.innerWidth;
+      let count = 0;  // Initialize count to 0
+      let counterIncrement = width;
+      let int = setInterval(timer, speed);
+  
+      // initial transform
+      carouselContent.style.transform = `translateX(-${count}px)`;
+  
+      function timer() {
+        count = count + counterIncrement;
+        carouselContent.style.transform = `translateX(-${count}px)`;
+  
+        if (count >= counterIncrement * (carouselLength - 1)) {
+          count = 0;
+          carouselContent.style.transform = `translateX(-${count}px)`;
+        }
+      }
+  
+      function carouselClick() {
+        // left click
+        carouselChildren[0].addEventListener("click", function () {
+          count = count - width;
+          if (count < 0) {
+            count = counterIncrement * (carouselLength - 1);
+          }
+          carouselContent.style.transform = `translateX(-${count}px)`;
+        });
+        // right click
+        carouselChildren[1].addEventListener("click", function () {
+          count = count + width;
+          if (count >= counterIncrement * carouselLength) {
+            count = 0;
+          }
+          carouselContent.style.transform = `translateX(-${count}px)`;
+        });
+      }
+  
+      function carouselHoverEffect() {
+        // left hover effect events
+        carouselChildren[0].addEventListener("mouseenter", function () {
+          clearInterval(int);
+        });
+        carouselChildren[0].addEventListener("mouseleave", function () {
+          int = setInterval(timer, speed);
+        });
+  
+        // right hover effect events
+        carouselChildren[1].addEventListener("mouseenter", function () {
+          clearInterval(int);
+        });
+        carouselChildren[1].addEventListener("mouseleave", function () {
+          int = setInterval(timer, speed);
+        });
+      }
+  
+      carouselHoverEffect();
+      carouselClick();
+    }
+  }
+  
+
 
 const itemsArray = [
     { id: 1, image: "./images/blackpeper.png", name: 'Black peper chicken vege with humus', price: "8.00" },
@@ -276,6 +350,7 @@ function showAddToCartToast() {
 
 function showToast() {
     window.location.href = "schedule.html"
+    
 }
 
 const reloadCard = () => {
@@ -347,3 +422,8 @@ function loadContent(url) {
 function navigateTo(page) {
     loadContent(page + '.html');
 }
+
+
+// carousel code
+
+  
