@@ -19,8 +19,29 @@ body {
     text-align: center;
     padding-block: 20px;
 }
+.horizontal-line{
+  border-top: 1px solid #7a7676; /* You can adjust the color and thickness */
+    width: 100%; /* Set the width to 100% to span the entire container */
+    margin: 2px 0; /* Adjust margin as needed */
+}
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+.cart-number {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  background-color: red; /* Set your desired background color for the number */
+  color: #fff; /* Set your desired text color for the number */
+  border-radius: 50%;
+  padding: 5px 8px;
+  font-size: 12px; /* Set your desired font size for the number */
+}
 .menuTypes{
-    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .menuTypes div{
     padding-block: 5px;

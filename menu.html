@@ -30,7 +30,9 @@
       <a id="authSection" href="index.html">
         
       </a>
-      <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
+      <div class="cart-container">
+        <a class="cart-button"  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /><span id="cartNumber" class="cart-number"></span></a>
+      </div>
     </div>
 
   </div>
@@ -80,9 +82,13 @@
         
         <div class="menuTypes">
           <div>Category</div>
+          <div class="horizontal-line"></div>
           <div> <input name="menuType" onclick="initApp('beef')" type="radio"/> Beef</div>
+          <div class="horizontal-line"></div>
           <div> <input name="menuType" onclick="initApp('chicken')" type="radio"/>Chicken</div>
+          <div class="horizontal-line"></div>
           <div> <input name="menuType" onclick="initApp('fish')" type="radio"/>Fish</div>
+          <div class="horizontal-line"></div>
           <div> <input name="menuType" onclick="initApp('veg')" type="radio"/>Veg</div>
         </div>
         <div id="itemContainer" class="itemSection">

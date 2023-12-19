@@ -106,7 +106,7 @@ const vegArray = [
 
 const itemContainer = document.getElementById('itemContainer');
 const menuContainer = document.getElementById('menuCart');
-
+const cartNumber=document.getElementById('cartNumber');
 const initApp = (type) => {
     const quantity = 1;
     console.log(type);
@@ -337,7 +337,7 @@ function showAddToCartToast() {
     // Show the toast
     setTimeout(function () {
         toast.style.display = "block";
-    }, 100);
+    }, 1000);
 
     // Hide the toast after 3 seconds
     setTimeout(function () {
@@ -345,7 +345,7 @@ function showAddToCartToast() {
         // Remove the toast element from the DOM after it's hidden
         document.getElementById("addtocart-toast-container").removeChild(toast);
 
-    }, 300);
+    }, 4000);
 }
 
 function showToast() {
@@ -361,7 +361,7 @@ const reloadCard = () => {
     let totalPrice = 0;
     let cartDiv = document.getElementById('orderDetails');
     cartDiv.innerHTML = ''; // Clear previous content
-
+    cartNumber.innerText=cartItem.length;
     cartItem.forEach((value, key) => {
         if (value !== null) {
             totalPrice += value.totalPrice;
