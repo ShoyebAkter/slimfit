@@ -82,7 +82,7 @@ function mealData() {
   const cartData = JSON.parse(data)
   let cartDiv = document.getElementById('mealName');
   let paymentDiv = document.getElementById('mealPrice');
-  
+const schedule=localStorage.getItem("schedule")
   let totalPrice = 0;
 console.log(cartData);
   cartData.forEach((data, key) => {
@@ -104,7 +104,7 @@ console.log(cartData);
   let subTotalDiv = document.getElementById('subTotal');
   subTotalDiv.innerHTML=`<div class="paymentPrice">
   <div>Total Price :</div>
-  <div>RM ${totalPrice}</div>
+  <div>RM ${totalPrice*schedule}</div>
   </div>`
 }
 mealData();
