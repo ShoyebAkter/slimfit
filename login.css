@@ -18,20 +18,21 @@ body {
 }
 
 .loginSection {
+    
     background-color: #A5EBA3;
     width: 373px;
     height: 547px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 .styleSection{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-block:auto ;
+    gap: 20px;
 }
 .inputSection {
     display: flex;
@@ -49,11 +50,12 @@ body {
     margin-bottom: 5px;
 }
 
-.logoSection {
-    position: relative;
+.logoSection img{
+    width: 150px;
+    height: 150px;
 }
 
-.rectangle {
+/* .rectangle {
     width: 186px;
     height: 140px;
     position: absolute;
@@ -77,9 +79,7 @@ body {
     top: -60px;
     left: -70px;
     z-index: 1;
-}
-
-.infoSection {}
+} */
 
 .signupSection {
     color: #000000;
