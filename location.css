@@ -441,9 +441,10 @@ img {
 .products .product_details span {
     display: table-cell;
     vertical-align: middle;
-    font-size: 1.5em;
+    font-size: 8px;
     padding: 5px;
-    color: #aaa;
+    color: #070707;
+    font-weight: 800;
 }
 
 .totals {
