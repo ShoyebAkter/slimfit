@@ -2,7 +2,8 @@
 const paymentRadios = document.querySelectorAll('.payment-radio');
   const paymentInfo = document.getElementById('paymentInfo');
   const paymentDetails = document.getElementById('paymentDetails');
-
+const shippingDate=document.getElementById('shipping_date');
+const shippingTime=document.getElementById('shipping_time');
   paymentRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       if (radio.checked) {
@@ -12,7 +13,9 @@ const paymentRadios = document.querySelectorAll('.payment-radio');
     });
   });
 function showPaymentToast() {
+  // console.log(shippingDate.value,shippingTime.value);
   // Create a new toast element
+ if(shippingDate.value && shippingTime.value){
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.innerHTML = "Your payment is successful";
@@ -32,6 +35,27 @@ function showPaymentToast() {
     document.getElementById("payment-toast-container").removeChild(toast);
     window.location.href = "menu.html";
   }, 3000);
+ }else{
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = "Please select shipping time and Date";
+
+  // Append the toast to the container
+  document.getElementById("payment-toast-container").appendChild(toast);
+
+  // Show the toast
+  setTimeout(function () {
+    toast.style.display = "block";
+  }, 500);
+
+  // Hide the toast after 3 seconds
+  setTimeout(function () {
+    toast.style.display = "none";
+    // Remove the toast element from the DOM after it's hidden
+    document.getElementById("payment-toast-container").removeChild(toast);
+    
+  }, 3000);
+ }
 }
 
 function mealData() {

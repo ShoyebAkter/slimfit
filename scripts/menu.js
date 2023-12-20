@@ -132,7 +132,7 @@ const initApp = (type) => {
         itemsHTML = chickenArray.map((item, key) => `
             <div class="singleItem">
               <img src="${item.image}" alt="" />
-                                <div>${item.name}</div>
+                                <div class="itemName">${item.name}</div>
                                 <div>RM ${item.price}</div>
                                 <div class="cartSection">
                                 <div class="addSection">
@@ -165,7 +165,7 @@ const initApp = (type) => {
         itemsHTML = vegArray.map((item, key) => `
         <div class="singleItem">
           <img src="${item.image}" alt="" />
-                            <div>${item.name}</div>
+                            <div class="itemName">${item.name}</div>
                             <div>RM ${item.price}</div>
                             <div class="cartSection">
                             <div class="addSection">
@@ -202,8 +202,9 @@ const productDetails = (image, name, price, key, quantity) => {
     const itemsHTML = `
     <div class="productDetails">
       <img src="${image}" alt="" />
-                        <div >
+                        <div class="foodDetails">
                             <div class="productName">${name}</div>
+                            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, neque sint autem pariatur non nemo aut, quas, molestias eaque hic eveniet deleniti quidem earum? Minima quod aut quam eaque inventore.</div>
                             <div class="productPrice">RM ${price}</div>
                             <div class="cartSection">
                             <div class="addSection">
@@ -372,7 +373,7 @@ const reloadCard = () => {
             itemDiv.innerHTML = `
                 <div><img src="${value.image}" alt=""/></div>
                 <div class="itemDetails">
-                    <p>${value.name}</p>
+                    <p class="itemName">${value.name}</p>
                     <div class="editButton">
                         <div onclick="toggleEdit(${key})">Edit</div>
                         <div onclick="removeFromCart('${value.name}')">Remove</div>

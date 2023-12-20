@@ -60,6 +60,11 @@ body {
     gap: 20px;
     
 }
+.itemName{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .singleItem{
     display: flex;
     flex-direction: column;
@@ -157,6 +162,12 @@ body {
   #orderDetails img{
     height:150px;
     width: 150px;
+  }
+  .foodDetails{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
   }
 .productDetails{
     margin-top: 20px;
