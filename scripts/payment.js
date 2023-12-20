@@ -1,59 +1,16 @@
 // scripts.js
-document.addEventListener('DOMContentLoaded', function () {
-  var stripe = Stripe('pk_test_51L3rUSLdVrNtSjVSK1ig1lHKSDiKNUkJFqm5jdP70THP1XTt4TkGECAlheGBukJUnyIgwiElEuz2dXvmH8bXEpXH00q7UmvRxJ');
-  var elements = stripe.elements();
+const paymentRadios = document.querySelectorAll('.payment-radio');
+  const paymentInfo = document.getElementById('paymentInfo');
+  const paymentDetails = document.getElementById('paymentDetails');
 
-  var style = {
-    base: {
-      color: '#32325d',
-      fontFamily: 'Arial, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4',
-      },
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a',
-    },
-  };
-
-  var card = elements.create('card', { style: style });
-  card.mount('#card-element');
-
-  card.addEventListener('change', function (event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-      displayError.textContent = event.error.message;
-    } else {
-      displayError.textContent = '';
-    }
-  });
-
-  var form = document.getElementById('payment-form');
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    stripe.createToken(card).then(function (result) {
-      if (result.error) {
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        stripeTokenHandler(result.token);
+  paymentRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.checked) {
+        paymentDetails.textContent = radio.getAttribute('data-info');
+        paymentInfo.style.display = 'block';
       }
     });
   });
-
-  function stripeTokenHandler(token) {
-    showToast();
-    window.location.href = "menu.html"
-    // You can send the token to your server to process the payment.
-    console.log(token);
-  }
-});
-
-
 function showPaymentToast() {
   // Create a new toast element
   const toast = document.createElement("div");
@@ -80,32 +37,44 @@ function showPaymentToast() {
 function mealData() {
   const data = localStorage.getItem("cartItem")
   const cartData = JSON.parse(data)
-  let cartDiv = document.getElementById('mealName');
-  let paymentDiv = document.getElementById('mealPrice');
-const schedule=localStorage.getItem("schedule")
+  let cartDiv = document.getElementById('productBox');
+  let paymentDiv = document.getElementById('sub_price');
+  let scheduleDiv = document.getElementById('sub_schedule');
+  let totalDiv = document.getElementById('calculated_total');
+  const schedule = localStorage.getItem("schedule")
   let totalPrice = 0;
-console.log(cartData);
-  cartData.forEach((data, key) => {
+  console.log(cartData);
+  cartData.map((data, key) => {
     totalPrice += data.totalPrice;
     const itemDiv = document.createElement('div');
-    const priceDiv = document.createElement('div');
-    itemDiv.classList.add('cart-item');
-    itemDiv.innerHTML=`
-    <div class="details">${data.name}</div>
+    // const priceDiv = document.createElement('div');
+    // const picDiv = document.createElement('div');
+
+    itemDiv.classList.add('products');
+    itemDiv.innerHTML = `
+    <div class="product_image">
+    <img src="${data.image}" />
+  </div>
+  <div class="product_details">
+    <span class="product_name">${data.name}</span>
+    <span class="quantity">${data.quantity}</span>
+    <span class="price">RM ${data.price}</span>
+  </div>
     `;
-    priceDiv.innerHTML=`
-    <div class="details">RM ${data.totalPrice}</div>
-    `;
-    
+
 
     cartDiv.appendChild(itemDiv);
-    paymentDiv.appendChild(priceDiv)
+    // paymentDiv.appendChild(priceDiv)
+    // mealPicDiv.appendChild(picDiv)
   })
-  let subTotalDiv = document.getElementById('subTotal');
-  subTotalDiv.innerHTML=`<div class="paymentPrice">
-  <div>Total Price :</div>
-  <div>RM ${totalPrice*schedule}</div>
-  </div>`
+  paymentDiv.innerHTML=`RM ${totalPrice}`
+  scheduleDiv.innerHTML=`Every ${schedule} weeks`
+  totalDiv.innerHTML=`RM ${totalPrice*schedule}`
+  // let subTotalDiv = document.getElementById('subTotal');
+  // subTotalDiv.innerHTML = `<div class="paymentPrice">
+  // <div>Total Price :</div>
+  // <div>RM ${totalPrice * schedule}</div>
+  // </div>`
 }
 mealData();
 
