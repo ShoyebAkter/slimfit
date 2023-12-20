@@ -131,7 +131,7 @@ const initApp = (type) => {
 
         itemsHTML = chickenArray.map((item, key) => `
             <div class="singleItem">
-              <img src="${item.image}" alt="" />
+              <img onclick="productDetails('${item.image}', '${item.name}', '${item.price}',${key},${quantity})" src="${item.image}" alt="" />
                                 <div class="itemName">${item.name}</div>
                                 <div>RM ${item.price}</div>
                                 <div class="cartSection">
@@ -148,7 +148,7 @@ const initApp = (type) => {
     } else if (type === "fish") {
         itemsHTML = fishArray.map((item, key) => `
         <div class="singleItem">
-          <img src="${item.image}" alt="" />
+          <img onclick="productDetails('${item.image}', '${item.name}', '${item.price}',${key},${quantity})" src="${item.image}" alt="" />
                             <div>${item.name}</div>
                             <div>RM ${item.price}</div>
                             <div class="cartSection">
@@ -164,7 +164,7 @@ const initApp = (type) => {
     } else if (type === "veg") {
         itemsHTML = vegArray.map((item, key) => `
         <div class="singleItem">
-          <img src="${item.image}" alt="" />
+          <img onclick="productDetails('${item.image}', '${item.name}', '${item.price}',${key},${quantity})" src="${item.image}" alt="" />
                             <div class="itemName">${item.name}</div>
                             <div>RM ${item.price}</div>
                             <div class="cartSection">
@@ -180,7 +180,7 @@ const initApp = (type) => {
     } else {
         itemsHTML = itemsArray.map((item, key) => `
         <div class="singleItem">
-          <img src="${item.image}" alt="" />
+          <img onclick="productDetails('${item.image}', '${item.name}', '${item.price}',${key},${quantity})" src="${item.image}" alt="" />
                             <div>${item.name}</div>
                             <div>RM ${item.price}</div>
                             <div class="cartSection">
