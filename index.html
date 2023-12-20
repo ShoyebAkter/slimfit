@@ -61,7 +61,7 @@
         function login() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            console.log(auth.currentUser,email, password);
+            // console.log(auth.currentUser,email, password);
 
             signInWithEmailAndPassword(auth, email, password)
                 .then(function (userCredential) {
