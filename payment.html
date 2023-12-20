@@ -60,19 +60,7 @@
               data-validation-minlength="1" data-type="text" data-required="true"
               data-error-message="Enter Your Billing City" /><label for="city">City</label>
           </div>
-          <div>
-            <div class="state_options">
-              <div class="select">
-                <select id="state">
-                  <option value="1">Alabama</option>
-                  <option value="2">Alaska</option>
-                  <option value="3">Arkansas</option>
-                  <option value="4">Etc.</option>
-                </select>
-              </div>
-              <label class="state" for="state">State</label>
-            </div>
-          </div>
+          
           <div>
             <input type="text" name="zip" value="" id="zip" placeholder="Zip Code" data-trigger="change"
               data-validation-minlength="1" data-type="text" data-required="true"
@@ -156,7 +144,7 @@
 
           <div class="payment-info" id="paymentInfo">
             <p id="paymentDetails">Payment details will be displayed here.</p>
-            <button id="payButton" onclick="pay()">Pay Now</button>
+            <button id="payButton" onclick="showPaymentToast()">Pay Now</button>
           </div>
         </div>
       </div>

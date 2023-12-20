@@ -11,6 +11,7 @@
 
 <body>
     <div class="background">
+        <div id="error-toast-container"></div>
         <div class="loginSection">
             <div class="styleSection">
                 <div class="logoSection">
@@ -71,6 +72,7 @@
                     window.location.href = "menu.html";
                 })
                 .catch(function (error) {
+                    showErrorToast(error)
                     console.error("Error creating user:", error);
                 });
         }
@@ -78,6 +80,7 @@
             login();
         });
     </script>
+    <script src="./scripts/login.js"></script>
 </body>
 
 </html>
