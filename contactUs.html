@@ -7,28 +7,35 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="contactus.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 </head>
 
 <body>
-    <div id="navbar" class="navbar">
-        <div class="firstSection">
-          <img class="logo" src="./images/slimfit logo.png" alt=""/>
-          <a href="menu.html">
-            <h2>Menu</h2>
-          </a>
-          <a href="contactUs.html">
-            <h2>Contact Us</h2>
-          </a>
-        </div>
-        <div class="lastSection">
-          <a id="authSection" href="index.html">
-            
-          </a>
+  <div class="navbar">
+    <div class="firstSection">
       
-          
-        </div>
+        <img class="logo" src="./images/slimfit logo.png" alt=""/>
+      
+     
+    </div>
     
+    <div class="lastSection">
+      <a href="menu.html" >
+        <h2>Menu</h2>
+        
+      </a> 
+      <a href="contactUs.html">
+        <h2>Contact Us</h2>
+      </a>
+      <a id="authSection" >
+        
+      </a>
+      <div class="cart-container">
+        <a class="cart-button"  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /><span id="cartNumber" class="cart-number"></span></a>
       </div>
+    </div>
+
+  </div>
       <div>
         <section>
     
@@ -48,7 +55,7 @@
                   
                   <div class="contact-info-content">
                     <h4>Address</h4>
-                    <p>4671 Sugar Camp Road,<br/> Owatonna, Minnesota, <br/>55060</p>
+                    <p>UIA,Gombak,KL</p>
                   </div>
                 </div>
                 
@@ -59,7 +66,7 @@
                   
                   <div class="contact-info-content">
                     <h4>Phone</h4>
-                    <p>571-457-2321</p>
+                    <p>+880160002115</p>
                   </div>
                 </div>
                 
@@ -70,7 +77,7 @@
                   
                   <div class="contact-info-content">
                     <h4>Email</h4>
-                   <p>ntamerrwael@mfano.ga</p>
+                   <p>Sazidctg550@Gmail.Com</p>
                   </div>
                 </div>
               </div>
@@ -103,7 +110,7 @@
           </div>
         </section>
       </div>
-    <script type="module">
+      <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
   import { getAuth , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use

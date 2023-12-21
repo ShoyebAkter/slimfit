@@ -3,7 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+#authSection{
+  cursor: pointer;
+}
 body {
     font-family: sans-serif;
 }
@@ -13,11 +15,12 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-block: 10px;
+    padding-block: 80px;
 }
- h1{
+ h1,h2{
     text-align: center;
     padding-block: 20px;
+    font-size: 20px;
 }
 .horizontal-line{
   border-top: 1px solid #7a7676; /* You can adjust the color and thickness */
@@ -59,6 +62,21 @@ body {
     display: flex;
     gap: 20px;
     
+}
+.carousel-item {
+  position: relative;
+  display: inline-block; /* Ensures images are displayed in a row */
+}
+
+.carousel-text {
+  position: absolute;
+  top: 50%; /* Adjust as needed */
+  left: 50%; /* Adjust as needed */
+  transform: translate(-50%, -50%);
+  color: white; /* Adjust text color */
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold; /* Adjust font weight */
+  text-align: center;
 }
 .itemName{
   white-space: nowrap;
