@@ -2,83 +2,226 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="footer.css">
 </head>
 
 <body>
-    <div class="background">
-        <div id="error-toast-container"></div>
-        <div class="loginSection">
-            <div class="styleSection">
-                <div class="logoSection">
-                    <img src="./images/slimfit logo.png" alt=""/>
-                </div>
-                <div>Log in Now!</div>
-                <div class="infoSection">
-                    <div class="inputSection">
-                        <div>Email</div>
-                        <input id="email" type="email" />
-                    </div>
-                    <div class="inputSection">
-                        <div>Password</div>
-                        <input id="password" type="password" />
-                    </div>
-                    <div class="signupSection">No account?
-                        <a href="signup.html">Sign Up Here</a>
-                    </div>
-                    <div class="button"><button id="loginBtn" class="loginButton">Login</button></div>
-
-                </div>
-                <div>Forgot password</div>
-            </div>
-        </div>
+  <div class="navbar">
+    <div class="firstSection">
+      
+        <img class="logo" src="./images/slimfit logo.png" alt=""/>
+      
+     
     </div>
     
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+    <div class="lastSection">
+      <a href="menu.html" >
+        <h2>Menu</h2>
+        
+      </a> 
+      <a href="contactUs.html">
+        <h2>Contact Us</h2>
+      </a>
+      <a id="authSection" >
+        
+      </a>
+      <div class="cart-container">
+        <a class="cart-button"  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /><span id="cartNumber" class="cart-number"></span></a>
+      </div>
+    </div>
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAc8Y2Yi9p82z08BImo_-F0ma8bb5VOAZk",
-            authDomain: "slimfit-a6d4c.firebaseapp.com",
-            projectId: "slimfit-a6d4c",
-            storageBucket: "slimfit-a6d4c.appspot.com",
-            messagingSenderId: "1041359413162",
-            appId: "1:1041359413162:web:579106b9393222cf8d15d3"
-        };
+  </div>
+  <!-- <div class="navbar">
+    <div class="firstSection">
+      
+        <img class="logo" src="./images/slimfit logo.png" alt=""/>
+      
+      <a href="menu.html" >
+        <h2>Menu</h2>
+        
+      </a> 
+      <a href="contactUs.html">
+        <h2>Contact Us</h2>
+      </a>
+    </div>
+    
+    <div class="lastSection">
+      <a id="authSection" href="login.html">
+        
+      </a>
+      <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
+    </div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        function login() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            // console.log(auth.currentUser,email, password);
+  </div> -->
+  
+  <div id="addtocart-toast-container"></div>
+  <div id="menuCart" class="menuCart">
+    <div >
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then(function (userCredential) {
-                    var user = userCredential.user;
-                    console.log("Login successful:", user);
-                    window.location.href = "menu.html";
-                })
-                .catch(function (error) {
-                    showErrorToast(error)
-                    console.error("Error creating user:", error);
-                });
-        }
-        document.getElementById("loginBtn").addEventListener("click", function () {
-            login();
-        });
-    </script>
-    <script src="./scripts/login.js"></script>
+      <div>
+        <div class="carousel" data-carousel="1" data-speed="2000">
+          <span class="carousel-control-left"></span>
+          <span class="carousel-control-right"></span>
+          <div class="carousel-content">
+            <!-- add extra last pic first and extra first pic last for hover effect to work properly  -->
+            <div class="carousel-item">
+              <img src="./images/carouselimage/beef.jpg" alt="image 5" />
+              <p class="carousel-text">Choose from 100+ meals with high-quality ingredients, sufficient macro-nutrients and options for every lifestyle and dietary preferences</p>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/carouselimage/chicken.jpg" alt="image 2" />
+              <p class="carousel-text">Choose from 100+ meals with high-quality ingredients, sufficient macro-nutrients and options for every lifestyle and dietary preferences</p>
+           
+            </div>
+            <div class="carousel-item">
+              <img src="./images/carouselimage/fish.jpg" alt="image 3" />
+              <p class="carousel-text">Choose from 100+ meals with high-quality ingredients, sufficient macro-nutrients and options for every lifestyle and dietary preferences</p>
+           
+            </div>
+        
+            <div class="carousel-item">
+              <img src="./images/carouselimage/veg.jpg" alt="image 4" />
+            <p class="carousel-text">Choose from 100+ meals with high-quality ingredients, sufficient macro-nutrients and options for every lifestyle and dietary preferences</p>
+           
+            </div>
+        </div>
+        </div>
+      </div>
+      <h1>Menu</h1>
+      <h2 id="loginCondition">Login First to see the products</h2>
+      <div id="menu" class="menu">
+        
+        <div class="menuTypes">
+          <div>Category</div>
+          <div class="horizontal-line"></div>
+          <div> <input name="menuType" onclick="initApp('beef')" type="radio"/> Beef</div>
+          <div class="horizontal-line"></div>
+          <div> <input name="menuType" onclick="initApp('chicken')" type="radio"/>Chicken</div>
+          <div class="horizontal-line"></div>
+          <div> <input name="menuType" onclick="initApp('fish')" type="radio"/>Fish</div>
+          <div class="horizontal-line"></div>
+          <div> <input name="menuType" onclick="initApp('veg')" type="radio"/>Veg</div>
+        </div>
+        <div id="itemContainer" class="itemSection">
+  
+  
+        </div>
+      </div>
+  
+    </div><div >
+
+  
+    </div>
+    
+  </div>
+  <div class="sidebar" id="cartSidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeCart()">&times;</a>
+    <div class="cart">
+      <div class="insideCart">
+        <div id="orderDiv" class="totalOrder">
+          
+        </div>
+        <div id="orderDetails">
+          
+        </div>
+        <hr>
+        <div>
+          Add Order Notes
+        </div>
+        <hr>
+        <div class="priceSection">
+          <div>
+            <div class="Subtotal">Subtotal </div>
+            <div>Delivery Fee</div>
+          </div>
+          <div id="priceSection">
+            <div id="mealPrice" class="Subtotal"></div>
+            <div id="deliveryFee">0</div>
+          </div>
+        </div>
+        <div class="payButton"> <button onclick="showToast()">CheckOut</button></div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+		<div class="container row">
+			<div class="footer-col">
+				<h4>SlimFit Home</h4>
+				<ul>
+					<li><a href="#">email: Sazidctg550@gmail.com</a></li>
+					<li><a href="#">Phone: 01131524255</a></li>
+					<li><a href="#">WhatsApp: +880160002115</a></li>
+					<li><a href="#">Address: UIA,Gombak,KL</a></li>
+				</ul>
+			</div>
+			
+		</div>
+	</footer>
+  <script src="./scripts/menu.js"></script>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+import { getAuth , onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAc8Y2Yi9p82z08BImo_-F0ma8bb5VOAZk",
+    authDomain: "slimfit-a6d4c.firebaseapp.com",
+    projectId: "slimfit-a6d4c",
+    storageBucket: "slimfit-a6d4c.appspot.com",
+    messagingSenderId: "1041359413162",
+    appId: "1:1041359413162:web:579106b9393222cf8d15d3"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const authSection = document.getElementById("authSection");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById('menuCart').style.height = '100%';
+    document.getElementById('loginCondition').style.display = "none";
+    authSection.innerHTML = `
+                    <h2 id="logoutButton" >Logout</h2>
+                `;
+
+                document.getElementById('logoutButton').onclick = function () {
+                    signOut(auth)
+                        .then(() => {
+                            window.location.href = 'login.html';
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    console.log(uid);
+    // ...
+  } else {
+    document.getElementById('menu').style.display='none'
+    document.getElementById('menu').innerHTML=``
+    authSection.innerHTML = `
+                    <h2 id="loginBtn">Login</h2>
+                `;
+                document.getElementById('loginBtn').onclick = function () {
+                  window.location.href = 'login.html';
+                }
+    // User is signed out
+    // ...
+  }
+});
+
+  </script>
 </body>
 
 </html>

@@ -13,7 +13,7 @@
     <div class="signupSec">
         <div>
             <h1>Sign Up</h1>
-            <div class="loginSec">Already have an Account?<a href="index.html">Login here</a></div>
+            <div class="loginSec">Already have an Account?<a href="login.html">Login here</a></div>
             <div class="signupInputsection">
                 <div>Name</div>
                 <input type="text" />
@@ -63,7 +63,7 @@
                 .then(function (userCredential) {
                     var user = userCredential.user;
                     console.log("User created:", user);
-                    window.location.href = "index.html";
+                    window.location.href = "login.html";
                 })
                 .catch(function (error) {
                     console.error("Error creating user:", error);

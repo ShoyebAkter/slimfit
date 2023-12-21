@@ -17,6 +17,6 @@ function showErrorToast(error) {
       toast.style.display = "none";
       // Remove the toast element from the DOM after it's hidden
       document.getElementById("payment-toast-container").removeChild(toast);
-      window.location.href = "menu.html";
+      window.location.href = "index.html";
     }, 4000);
   }
