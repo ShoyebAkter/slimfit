@@ -14,6 +14,23 @@ section {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+#authSection{
+  cursor: pointer;
+}
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+.cart-number {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  background-color: red; /* Set your desired background color for the number */
+  color: #fff; /* Set your desired text color for the number */
+  border-radius: 50%;
+  padding: 5px 8px;
+  font-size: 12px; /* Set your desired font size for the number */
+}
 
 .container {
   max-width: 1080px;
