@@ -37,29 +37,6 @@
     </div>
 
   </div>
-  <!-- <div class="navbar">
-    <div class="firstSection">
-      
-        <img class="logo" src="./images/slimfit logo.png" alt=""/>
-      
-      <a href="menu.html" >
-        <h2>Menu</h2>
-        
-      </a> 
-      <a href="contactUs.html">
-        <h2>Contact Us</h2>
-      </a>
-    </div>
-    
-    <div class="lastSection">
-      <a id="authSection" href="login.html">
-        
-      </a>
-      <a  href="javascript:void(0)" onclick="openCart()"><img src="./images/cart.png" alt="cart" /></a>
-    </div>
-
-  </div> -->
-  
   <div id="addtocart-toast-container"></div>
   <div id="menuCart" class="menuCart">
     <div >
@@ -94,7 +71,6 @@
         </div>
       </div>
       <h1>Menu</h1>
-      <h2 id="loginCondition">Login First to see the products</h2>
       <div id="menu" class="menu">
         
         <div class="menuTypes">
@@ -188,7 +164,6 @@ const authSection = document.getElementById("authSection");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById('menuCart').style.height = '100%';
-    document.getElementById('loginCondition').style.display = "none";
     authSection.innerHTML = `
                     <h2 id="logoutButton" >Logout</h2>
                 `;
@@ -202,14 +177,8 @@ onAuthStateChanged(auth, (user) => {
                             console.log(error);
                         });
                 }
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    console.log(uid);
-    // ...
+
   } else {
-    document.getElementById('menu').style.display='none'
-    document.getElementById('menu').innerHTML=``
     authSection.innerHTML = `
                     <h2 id="loginBtn">Login</h2>
                 `;

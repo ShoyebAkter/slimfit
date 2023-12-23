@@ -145,7 +145,7 @@
 
           <div class="payment-info" id="paymentInfo">
             <p id="paymentDetails">Payment details will be displayed here.</p>
-            <button id="payButton" onclick="showPaymentToast()">Pay Now</button>
+            <button id="payButton" >Pay Now</button>
           </div>
         </div>
       </div>
@@ -180,6 +180,39 @@
 
   <script src="https://js.stripe.com/v3/"></script>
   <script src="./scripts/payment.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+import { getAuth , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAc8Y2Yi9p82z08BImo_-F0ma8bb5VOAZk",
+    authDomain: "slimfit-a6d4c.firebaseapp.com",
+    projectId: "slimfit-a6d4c",
+    storageBucket: "slimfit-a6d4c.appspot.com",
+    messagingSenderId: "1041359413162",
+    appId: "1:1041359413162:web:579106b9393222cf8d15d3"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const payButton = document.getElementById("payButton");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    payButton.addEventListener('click',function(){
+      showPaymentToast();
+    })
+  } else {
+    payButton.addEventListener('click',function(){
+      window.location.href="login.html";
+    })
+  }
+});
+
+  </script>
 </body>
 
 </html>
