@@ -21,7 +21,7 @@
                 <div class="infoSection">
                     <div class="inputSection">
                         <div>Email</div>
-                        <input id="email" type="email" />
+                        <input id="email" type="email"  required/>
                     </div>
                     <div class="inputSection">
                         <div>Password</div>
@@ -67,7 +67,14 @@
                 .then(function (userCredential) {
                     var user = userCredential.user;
                     console.log("Login successful:", user);
-                    window.location.href = "index.html";
+                    const url=localStorage.getItem("url");
+                    if(url){
+                        window.location.href=url;
+                        localStorage.removeItem("url")
+                    }else{
+                        window.location.href = "index.html";
+                    }
+                    
                 })
                 .catch(function (error) {
                     showErrorToast(error)

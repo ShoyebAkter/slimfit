@@ -4,6 +4,7 @@ const paymentRadios = document.querySelectorAll('.payment-radio');
   const paymentDetails = document.getElementById('paymentDetails');
 const shippingDate=document.getElementById('shipping_date');
 const shippingTime=document.getElementById('shipping_time');
+const email=document.getElementById('email-address');
   paymentRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       if (radio.checked) {
@@ -13,9 +14,10 @@ const shippingTime=document.getElementById('shipping_time');
     });
   });
 function showPaymentToast() {
-  // console.log(shippingDate.value,shippingTime.value);
-  // Create a new toast element
- if(shippingDate.value && shippingTime.value){
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validEmail=emailRegex.test(email.value);
+  
+ if(shippingDate.value && shippingTime.value && validEmail){
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.innerHTML = "Your payment is successful";
@@ -33,12 +35,13 @@ function showPaymentToast() {
     toast.style.display = "none";
     // Remove the toast element from the DOM after it's hidden
     document.getElementById("payment-toast-container").removeChild(toast);
+    localStorage.removeItem("cartItem");
     window.location.href = "index.html";
   }, 3000);
  }else{
   const toast = document.createElement("div");
   toast.className = "toast";
-  toast.innerHTML = "Please select shipping time and Date";
+  toast.innerHTML = "Please select email, shipping time & Date";
 
   // Append the toast to the container
   document.getElementById("payment-toast-container").appendChild(toast);
@@ -101,12 +104,3 @@ function mealData() {
   // </div>`
 }
 mealData();
-
-function displayPayment() {
-  var pay_method = document.getElementById("pay_method");
-  var divc = document.getElementById("card-payment");
-  var divb = document.getElementById("bank-payment")
-  divc.style.display = pay_method.value == "C" ? "block" : "none";
-  divb.style.display = pay_method.value == "B" ? "block" : "none";
-
-}

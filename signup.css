@@ -18,6 +18,22 @@ body {
     width: 187px;
     height: 167px;
 }
+#error-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .toast {
+    display: none;
+    background-color: rgb(245, 53, 6);
+    color: #fff;
+    padding: 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
 .signupSec {
     display: flex;
     justify-content: space-around;
