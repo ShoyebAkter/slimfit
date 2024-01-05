@@ -2,176 +2,214 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="contactus.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="contactus.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+    integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 </head>
 
 <body>
   <div class="navbar">
     <div class="firstSection">
-      
-        <img class="logo" src="./images/slimfit logo.png" alt=""/>
-      
-     
+
+      <img class="logo" src="./images/slimfit logo.png" alt="" />
+
+
     </div>
-    
+
     <div class="lastSection">
-      <a href="index.html" >
-        <h2>Menu</h2>
+      <a href="home.html" >
+        <h2>Home</h2>
         
       </a> 
+      <a href="index.html">
+        <h2>Menu</h2>
+
+      </a>
       <a href="contactUs.html">
         <h2>Contact Us</h2>
       </a>
-      <a id="authSection" >
-        
+      <a href="myorder.html">
+        <h2>My Orders</h2>
+      </a>
+      <a id="authSection">
+
       </a>
     </div>
 
   </div>
-      <div>
-        <section>
-    
-          <div class="section-header">
-            <div class="container">
-              <h2>Contact Us</h2></div>
-          </div>
-          
-          <div class="container">
-            <div class="row">
-              
-              <div class="contact-info">
-                <div class="contact-info-item">
-                  <div class="contact-info-icon">
-                    <i class="fas fa-home"></i>
-                  </div>
-                  
-                  <div class="contact-info-content">
-                    <h4>Address</h4>
-                    <p>UIA,Gombak,KL</p>
-                  </div>
-                </div>
-                
-                <div class="contact-info-item">
-                  <div class="contact-info-icon">
-                    <i class="fas fa-phone"></i>
-                  </div>
-                  
-                  <div class="contact-info-content">
-                    <h4>Phone</h4>
-                    <p>+880160002115</p>
-                  </div>
-                </div>
-                
-                <div class="contact-info-item">
-                  <div class="contact-info-icon">
-                    <i class="fas fa-envelope"></i>
-                  </div>
-                  
-                  <div class="contact-info-content">
-                    <h4>Email</h4>
-                   <p>Sazidctg550@Gmail.Com</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="contact-form">
-                <form action="" id="contact-form">
-                  <h2>Send Message</h2>
-                  <div class="input-box">
-                    <input type="text" required="true" name="">
-                    <span>Full Name</span>
-                  </div>
-                  
-                  <div class="input-box">
-                    <input type="email" required="true" name="">
-                    <span>Email</span>
-                  </div>
-                  
-                  <div class="input-box">
-                    <textarea required="true" name=""></textarea>
-                    <span>Type your Message...</span>
-                  </div>
-                  
-                  <div class="input-box">
-                    <input type="submit" value="Send" name="">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-        <footer class="footer">
-          <div class="container row">
-            <div class="footer-col">
-              <h4>SlimFit Home</h4>
-              <ul>
-                <li><a href="#">email: Sazidctg550@gmail.com</a></li>
-                <li><a href="#">Phone: 01131524255</a></li>
-                <li><a href="#">WhatsApp: +880160002115</a></li>
-                <li><a href="#">Address: UIA,Gombak,KL</a></li>
-              </ul>
-            </div>
-            
-          </div>
-        </footer>
+  <div>
+    <section>
+
+      <div class="section-header">
+        <div class="container">
+          <h2>Contact Us</h2>
+        </div>
       </div>
-      <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-  import { getAuth , onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-  
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
+
+      <div class="container">
+        <div class="row">
+
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-home"></i>
+              </div>
+
+              <div class="contact-info-content">
+                <h4>Address</h4>
+                <p>UIA,Gombak,KL</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+
+              <div class="contact-info-content">
+                <h4>Phone</h4>
+                <p>+880160002115</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+
+              <div class="contact-info-content">
+                <h4>Email</h4>
+                <p>Sazidctg550@Gmail.Com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <form action="" id="contact-form">
+              <h2>Send Message</h2>
+              <div class="input-box">
+                <input id="name" type="text" placeholder="Name" required="true" name="">
+                
+              </div>
+
+              <div class="input-box">
+                <input id="email" type="email" placeholder="Email" required="true" name="">
+                
+              </div>
+
+              <div class="input-box">
+                <textarea id="message" placeholder="Write your message" required="true" name=""></textarea>
+                
+              </div>
+
+              <div class="input-box">
+                <input  id="sendBtn" t type="submit" value="Send" name="">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container row">
+        <div class="footer-col">
+          <h4>SlimFit Home</h4>
+          <ul>
+            <li><a href="#">email: Sazidctg550@gmail.com</a></li>
+            <li><a href="#">Phone: 01131524255</a></li>
+            <li><a href="#">WhatsApp: +880160002115</a></li>
+            <li><a href="#">Address: UIA,Gombak,KL</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
       apiKey: "AIzaSyAc8Y2Yi9p82z08BImo_-F0ma8bb5VOAZk",
       authDomain: "slimfit-a6d4c.firebaseapp.com",
       projectId: "slimfit-a6d4c",
       storageBucket: "slimfit-a6d4c.appspot.com",
       messagingSenderId: "1041359413162",
       appId: "1:1041359413162:web:579106b9393222cf8d15d3"
-  };
-  
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const authSection = document.getElementById("authSection");
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      authSection.innerHTML = `
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const authSection = document.getElementById("authSection");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authSection.innerHTML = `
       <h2 id="contactLogout" onclick="logout()">Logout</h2>`;
-      document.getElementById('contactLogout').onclick = function () {
-                    signOut(auth)
-                        .then(() => {
-                            window.location.href = 'login.html';
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                      }
-      const uid = user.uid;
-      console.log(uid);
-      
-    }
-     else {
-      authSection.innerHTML = `
+        document.getElementById('contactLogout').onclick = function () {
+          signOut(auth)
+            .then(() => {
+              window.location.href = 'login.html';
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+        const uid = user.uid;
+        console.log(uid);
+
+      }
+      else {
+        authSection.innerHTML = `
                       <h2 id="contactLogin">Login</h2>
                   `;
-                  document.getElementById('contactLogin').onclick = function () {
-                  window.location.href = 'login.html';
-                }
-      // User is signed out
-      // ...
+        document.getElementById('contactLogin').onclick = function () {
+          window.location.href = 'login.html';
+        }
+        // User is signed out
+        // ...
+      }
+    });
+
+
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    document.getElementById("sendBtn").onclick=function(){
+      sendMail();
     }
-  });
-  
-  
-    </script>
+    function sendMail() {
+      event.preventDefault();
+      emailjs.init("BTrXVDBsup09nfZ9j");
+      
+      const name=document.getElementById("name").value;
+      const email=document.getElementById("email").value;
+      const message=document.getElementById("message").value;
+
+      var templateParams = {
+        name: name,
+        message: message,
+        email:email
+      };
+      
+      emailjs.send('service_dhln51h', 'template_ftrpft3', templateParams)
+        .then(function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+        }, function (error) {
+          console.log('FAILED...', error);
+        });
+    };
+
+  </script>
 </body>
 
 </html>

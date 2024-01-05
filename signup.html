@@ -64,6 +64,16 @@
                 .then(function (userCredential) {
                     var user = userCredential.user;
                     console.log("User created:", user);
+                    const userInfo = {
+                        email: email,
+                    }
+                    console.log("User created:", user);
+                    fetch("https://slimfitbackend.vercel.app/user", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }, body: JSON.stringify(userInfo)
+                        })
                     window.location.href = "login.html";
                 })
                 .catch(function (error) {

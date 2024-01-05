@@ -21,12 +21,19 @@
     </div>
     
     <div class="lastSection">
+      <a href="home.html" >
+        <h2>Home</h2>
+        
+      </a> 
       <a href="index.html" >
         <h2>Menu</h2>
         
       </a> 
       <a href="contactUs.html">
         <h2>Contact Us</h2>
+      </a>
+      <a href="myorder.html">
+        <h2>My Orders</h2>
       </a>
       <a id="authSection" >
         
@@ -163,11 +170,12 @@ const auth = getAuth(app);
 const authSection = document.getElementById("authSection");
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    localStorage.setItem("userEmail",user.email)
     document.getElementById('menuCart').style.height = '100%';
     authSection.innerHTML = `
                     <h2 id="logoutButton" >Logout</h2>
                 `;
-
+    localStorage.setItem("userEmail",user.email)
                 document.getElementById('logoutButton').onclick = function () {
                     signOut(auth)
                         .then(() => {

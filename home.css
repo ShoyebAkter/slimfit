@@ -1,0 +1,15 @@
+.homeDish{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.dish{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dish img{
+    width: 350px;
+    height: 400px;
+}
